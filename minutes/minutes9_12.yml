@@ -1,0 +1,18 @@
+date: September 12, 2016
+meeting_type: group
+attendance: [<jrcharlo>, <nwhahn>, <jpschnel>, <murphy53>]
+absent: []
+excused absences: []
+task_progress: [ 
+  {ubit: <jrcharlo>, progress: Gathering information on unassesed data}
+  {ubit: <nwhahn>, progress: Confirming and ordering items based on assesed data}
+  {ubit: <jpschnel>, progress: Set up git repository}
+  {ubit: <murphy53>, progress: Confirmed infeasability of on campus crazyflies}
+]
+issues: [
+  {ubit: <murphy53>, issue: Due to lack of crazyflie operability, another possible aerial capture device needs to be considered}
+  {ubit: <jrcharlo>, issue: Whether to maually make a car through pi & breadboard, vs ordering a kit online}
+]
+Notes: |
+  murphy53's laptop cannot run watch dogs in 4k. nwhahn however, realised he can now play rocket leauge on his, not in 4k of course.
+  

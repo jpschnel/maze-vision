@@ -1,0 +1,17 @@
+date: September 14, 2016
+meeting_type: ta
+attendance: [<jrcharlo>, <nwhahn>, <murphy53>]
+absent: [<jpschnel>]
+excused absences: [
+{ubit: <jpschnel>, reason: Dentist appointment}
+]
+task_progress: [
+  {ubit: <jrcharlo>, progress: Setup of Florence}
+  {ubit: <nwhahn>, progress: Purchase and Setup of Florence}
+  {ubit: <jpschnel>, progress: Setup of Florence}
+  {ubit: <murphy53>, progress: Setup of Florence}
+]
+issues: [
+  {ubit: <nwhahn>, issue: Missing a battery, needs to go to a shop to acquire some.}
+]
+Notes: |  Just a verification meeting with the TA. 
