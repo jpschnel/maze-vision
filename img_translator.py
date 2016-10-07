@@ -5,6 +5,7 @@ from scipy.misc import imread,imsave,imresize
 #predefined values
 BLACK= '[0 0 0]'
 WHITE='255 255 255'
+#place color coded photo in same folder
 img= imread('extracted.jpg')
 img_resized=imresize(img,(32,64))
 arr=numpy.asarray(img_resized,dtype="int32")
