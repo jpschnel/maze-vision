@@ -5,10 +5,9 @@ from scipy.misc import imread,imsave,imresize
 #predefined values
 BLACK= '[0 0 0]'
 WHITE='255 255 255'
-#place color coded photo in same folder
 img= imread('extracted.jpg')
-img_resized=imresize(img,(32,64))
-arr=numpy.asarray(img_resized,dtype="int32")
+img_resized=imresize(img,(1920,1080))
+arr=numpy.asarray(img,dtype="int32")
 
 
 #print (len(arr))
@@ -26,10 +25,10 @@ for i in range(0,len(arr)):
 		elif arr[i][j][0]==0 and arr[i][j][1]==0 and arr[i][j][2]==0:
 			#arr[i][j]=0
 			output=output+'0'
-		elif arr[i][j][0]==255 and arr[i][j][1]==0 and arr[i][j][2]==0:
+		elif arr[i][j][0]> 150 and arr[i][j][0]> arr[i][j][1] and arr[i][j][0]>arr[i][j][2]:
 			#arr[i][j]=2
 			output=output+'2'
-		elif arr[i][j][0]==0 and arr[i][j][1]==0 and arr[i][j][2]==0:
+		elif arr[i][j][2] > arr[i][j][0] and arr[i][j][2]>arr[i][j][1]:
 			#arr[i][j]=3
 			output=output+'3'
 		else: 
@@ -42,4 +41,4 @@ for i in range(0,len(arr)):
 			#arr[i][j]=0
 #print(arr[220][201])
 print(output)
-#imsave('img_new.jpg',img)
+imsave('img_new.jpg',img)
