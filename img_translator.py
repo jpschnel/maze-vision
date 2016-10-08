@@ -6,8 +6,8 @@ from scipy.misc import imread,imsave,imresize
 BLACK= '[0 0 0]'
 WHITE='255 255 255'
 img= imread('extracted.jpg')
-img_resized=imresize(img,(1920,1080))
-arr=numpy.asarray(img,dtype="int32")
+img_resized=imresize(img,(90,120))
+arr=numpy.asarray(img_resized,dtype="int32")
 
 
 #print (len(arr))
@@ -18,22 +18,17 @@ arr=numpy.asarray(img,dtype="int32")
 output=''
 for i in range(0,len(arr)):
 	for j in range(0,len(arr[0])):
-		
-		if arr[i][j][0]==255 and arr[i][j][1]==255 and arr[i][j][2]==255:
+		if arr[i][j][0]>150 and arr[i][j][0]>arr[i][j][1] and arr[i][j][0]>arr[i][j][2]:
 			#arr[i][j]=1
 			output=output+'1'
-		elif arr[i][j][0]==0 and arr[i][j][1]==0 and arr[i][j][2]==0:
-			#arr[i][j]=0
-			output=output+'0'
-		elif arr[i][j][0]> 150 and arr[i][j][0]> arr[i][j][1] and arr[i][j][0]>arr[i][j][2]:
+		elif arr[i][j][1]>150 and arr[i][j][1]>arr[i][j][0] and arr[i][j][1]>arr[i][j][2]:
 			#arr[i][j]=2
 			output=output+'2'
-		elif arr[i][j][2] > arr[i][j][0] and arr[i][j][2]>arr[i][j][1]:
+		elif arr[i][j][2]>150 and arr[i][j][2]>arr[i][j][0] and arr[i][j][2]>arr[i][j][1]:
 			#arr[i][j]=3
 			output=output+'3'
 		else: 
-			output=output+'1'
-
+			output=output+'0'
 	output=output+'\n'	
 		#print(arr[i][j])
 		#print(arr[i][j].tostring)
@@ -41,4 +36,4 @@ for i in range(0,len(arr)):
 			#arr[i][j]=0
 #print(arr[220][201])
 print(output)
-imsave('img_new.jpg',img)
+#imsave('img_new.jpg',img)
