@@ -1,0 +1,14 @@
+date: 10/7/16
+meeting type:Professor
+attendance:jrcharlo,jpschne,nwhahn,murphy53
+absent:
+excused absences:
+task_progress:
+    jrcharlo: Robot now runs
+    nwhahn: Working out bugs in making compressed image have correct matrix representation
+    jpschnel:Currently working on shortest path conversion to python
+    murphy53: Working out bugs in making compressed image have correct matrix representation
+issues:
+    solved confusion related to github repository
+Notes:
+    new robot idea, sphero sprk+ which is spherical in nature, staying with adafruit robot for now
