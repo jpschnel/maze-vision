@@ -1,0 +1,40 @@
+Florence 2.0 Straight Line Distance Trials
+
+Notes:
+Surface: hardwood floor
+Batteries: New and fully charged
+	There will be  alot of error in these results. The RPi is currently hooked up to a power cord so there is extra weight that Florence is having to pull. Once a more permanent (mobile) power system is installed the following data will become more or less useless. I will be lifting up the cord during these runs for better results although it will also introduce random error (I cannot lift it the same way every run). Also these runs will be assuming that Florence is going in a straight line, which is an assumption. Battery power (for motors) may play a factor in the speed. Different surfaces will also affect Florence's result (carpet does not work well at all). Finally I have no ruler/tape measurer handy so I am using loose leaf paper and the rulings on them as a unit of distance. They can easily be converted into an actual distance or relative to Florence herself.
+
+*CRPLW = College Rule Paper Line Width
+
+	Run		|	Speed (?)	|	Time (s)	|	Distance (CRPLW)
+	1			50				1				24.5
+	2			50				1				25
+	3			50				1				24.25
+	4			50				1				24.5
+	5			50				1				24.75
+	6			50				2				49.5
+	7			50				2				49.5
+	8			50				2				49
+	9			50				2				49
+	10			50				2				49
+	11			100				0.5				29
+	12			100				0.5				29
+	13			100				0.5				29
+	14			100				0.5				29.25
+	15			100				0.5				29.25
+	16			100				1				56.5
+	17			100				1				56.5
+	18			100				1				57
+	19			100				1				57.25
+	20			100				1				56.5
+	21			100				1.5				83.5
+	22			100				1.5				83.25
+	23			100				1.5				83.25
+	24			100				1.5				83.5
+	25			100				1.5				83
+	26			100				1				
+	27			100				1				
+	28			100				1				
+	29			100				1				
+	
