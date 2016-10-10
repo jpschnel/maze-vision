@@ -1,0 +1,13 @@
+date: 10/2/16
+meeting type:
+attendance:jrcharlo,jpschne,nwhahn
+absent:murphy53
+excused absences:
+task_progress:
+    jrcharlo, nwhahn, jpschne: worked on building physical robot body
+   
+issues:
+   robot needs to be soldered
+Notes:
+    got new robot kit, tryed to figure it out
+    
