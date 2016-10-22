@@ -1,0 +1,15 @@
+date: 9/28/16
+meeting type:
+attendance:jrcharlo,jpschne
+absent:nwhahn
+excused absences: murphy53
+task_progress:
+    jrcharlo: found error with robot turning
+    nwhahn: started making program to automate image capture 
+    jpschne: fixed camera to connect with pi
+   
+issues:
+   robot turning
+Notes:
+    may need  new robot if this one doesn't work
+    
