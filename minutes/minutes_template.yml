@@ -1,0 +1,47 @@
+date: September 10, 2016
+
+meeting_type: ta # meeting_type can "group", "ta", or "instructor"
+
+attendance: [<ubit0>, <ubit1>, <ubit2>, <ubit3>]
+
+absent: [<ubit4>, <ubit5>, <ubit6>]
+
+excused_absences: [ # Any legitamite excuses for absent team members
+
+  {ubit: <ubit5>, : reason: Had class. This was known through a Doodle poll before scheduling the meeting.},
+
+  {ubit: <ubit6>, reason: Abducted by aliens 15 minutes before meeting}
+
+  ]
+
+task_progress: [ # All group members must be included here even if they haven't made any progress since the last meeting
+
+  {ubit: <ubit0>, progress: Setup apache on the development server. A static site is now live on UB's network},
+
+  {ubit: <ubit1>, progress: Installed MySQL and setup accounts for the team.},
+
+  {ubit: <ubit2>, progress: None},
+
+  {ubit: <ubit3>, progress: Completed AJAX functions for user to upload files to the server.},
+
+  {ubit: <ubit4>, progress: None},
+
+  {ubit: <ubit5>, progress: Created models for users and orders in Django.},
+
+  {ubit: <ubit6>, progress: Started designing an algorithm to optimize order and inventory proccessing.}
+
+  ]
+
+issues: [ # Post any issues here. Issues that cannot be addressed by the group should especially be included
+
+  {ubit: <ubit2>, issue: Needs to contact customer to clarify requirements that have not yet been dicussed.},
+
+  {ubit: <ubit6>, issue: After discussing with the TA it turns out that this problem is NP-Complete.}
+
+  ]
+
+Notes:  | # Anything covered in the meeting that doesn't fit elsewhere.
+
+  The group is considering a switch from Django to Ruby on Rails. Deliberations will continue.
+
+  TA suggested moving sensitive computation from the browser/client to the server for improved security.
