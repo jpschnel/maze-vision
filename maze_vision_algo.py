@@ -7,7 +7,7 @@ def maze_vision():
 
 	maze.append(list('0000002'))
 	maze.append(list('0000000'))
-	maze.append(list('000110'))
+	maze.append(list('0001100'))
 	maze.append(list('0000310'))
 	#print(maze)
 	fx=0
@@ -24,7 +24,8 @@ def maze_vision():
 			elif maze[y][x]=='3':
 				fx=x
 				fy=y
-			
+	edges = get_edges(maze)
+	printee(edges)
 	print("sx="+str(sx))
 	print("sy="+str(sy))
 	print("fx="+str(fx))
@@ -35,7 +36,46 @@ def maze_vision():
 
 
 	
-
+def get_edges(maze):
+	finaly = [['0']*(len(maze[0])+2)]
+	for ele in maze:
+		toap = []
+		f = ['0']
+		for item in ele:
+			f.append(item)
+		f.append('0')
+		finaly.append(f)
+	finaly.append(finaly[0])
+	final = []
+	for y in range(1,len(maze)+1):
+		final1=[]
+		for x in range(1,len(maze[0])+1):
+			o = 0
+			if finaly[y][x]=='1':
+				o-=8
+			if finaly[y+0][x-1]=='1':
+				o+=1
+			if finaly[y-1][x-1]=='1':
+				o+=1
+			if finaly[y+1][x-1]=='1':
+				o+=1
+			if finaly[y-1][x+0]=='1':
+				o+=1
+			if finaly[y+1][x+0]=='1':
+				o+=1
+			if finaly[y+0][x+1]=='1':
+				o+=1
+			if finaly[y-1][x+1]=='1':
+				o+=1
+			if finaly[y+1][x+1]=='1':
+				o+=1
+			final1.append(o)
+		final.append(final1)
+	return final
+	
+def printee(what):
+	for ele in what:
+		print(ele)
 	
 def distance(maze, sx, sy, fx, fy):
 
