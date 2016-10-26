@@ -5,10 +5,10 @@ def maze_vision():
 	
 	maze=[]
 
-	maze.append(list('0000002'))
-	maze.append(list('0000000'))
-	maze.append(list('0001100'))
-	maze.append(list('0000310'))
+	maze.append(list('000001111111111102'))
+	maze.append(list('000000000011000000'))
+	maze.append(list('000110000000011110'))
+	maze.append(list('000031111111111110'))
 	#print(maze)
 	fx=0
 	fy=0
@@ -25,7 +25,10 @@ def maze_vision():
 				fx=x
 				fy=y
 	edges = get_edges(maze)
+	edges = plot_edges(edges)
 	printee(edges)
+	print('\n')
+	printee(for_rep(maze))
 	print("sx="+str(sx))
 	print("sy="+str(sy))
 	print("fx="+str(fx))
@@ -34,18 +37,34 @@ def maze_vision():
 	print ("the shortest path is "+ans+ " spaces")
 	print(path)
 
-
+def plot_edges(edges):
+	edges = fatter(edges)
+	final=[]
+	for y in range(1,len(edges)-1):
+		final1=[]
+		for x in range(1,len(edges[0])-1):
+			if edges[y][x]=='-7':
+				#if ' ' in edges[y+0][x-1]:
+				#	edges[y+0][x-1]='EE'
+				if ' ' in edges[y-1][x-1]:
+					edges[y-1][x-1]='EE'
+				if ' ' in edges[y+1][x-1]:
+					edges[y+1][x-1]='EE'
+				#if ' ' in edges[y-1][x+0]:
+				#	edges[y-1][x+0]='EE'
+				#if ' ' in edges[y+1][x+0]:
+				#	edges[y+1][x+0]='EE'
+				#if ' ' in edges[y+0][x+1]:
+				#	edges[y+0][x+1]='EE'
+				if ' ' in edges[y-1][x+1]:
+					edges[y-1][x+1]='EE'
+				if ' ' in edges[y+1][x+1]:
+					edges[y+1][x+1]='EE'
+	print('\n\n')
+	return skimp(edges)
 	
 def get_edges(maze):
-	finaly = [['0']*(len(maze[0])+2)]
-	for ele in maze:
-		toap = []
-		f = ['0']
-		for item in ele:
-			f.append(item)
-		f.append('0')
-		finaly.append(f)
-	finaly.append(finaly[0])
+	finaly = fatter(maze)
 	final = []
 	for y in range(1,len(maze)+1):
 		final1=[]
@@ -69,8 +88,42 @@ def get_edges(maze):
 				o+=1
 			if finaly[y+1][x+1]=='1':
 				o+=1
+			p=o
+			o=str(o)
+			if p>-1:
+				o=' '+o
 			final1.append(o)
 		final.append(final1)
+	return final
+	
+def fatter(list):
+	finaly = [[' 0']*(len(list[0])+2)]
+	for ele in list:
+		toap = []
+		f = [' 0']
+		for item in ele:
+			f.append(item)
+		f.append(' 0')
+		finaly.append(f)
+	finaly.append(finaly[0])
+	return finaly
+	
+def skimp(list):
+	final =[]
+	for x in range(1,len(list)-1):
+		finaly = []
+		for y in range(1,len(list[0])-1):
+			finaly.append(list[x][y])
+		final.append(finaly)
+	return final
+	
+def for_rep(maze):
+	final =[]
+	for x in range(0,len(maze)):
+		finaly = []
+		for y in range(0,len(maze[0])):
+			finaly.append(' '+maze[x][y])
+		final.append(finaly)
 	return final
 	
 def printee(what):
