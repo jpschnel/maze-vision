@@ -24,11 +24,17 @@ def maze_vision():
 			elif maze[y][x]=='3':
 				fx=x
 				fy=y
-	edges = get_edges(maze)
-	edges = plot_edges(edges)
+	edges4 = get_edges4(maze)
+	edges8 = get_edges8(maze)
+	edges = plot_edges(edges8,edges4)
+	printee(edges4)
+	print('\n')
 	printee(edges)
 	print('\n')
 	printee(for_rep(maze))
+	edge_maze=merge_em(maze,edges)
+	print('\n')
+	printee(edge_maze)
 	print("sx="+str(sx))
 	print("sy="+str(sy))
 	print("fx="+str(fx))
@@ -37,34 +43,75 @@ def maze_vision():
 	print ("the shortest path is "+ans+ " spaces")
 	print(path)
 
-def plot_edges(edges):
-	edges = fatter(edges)
+def merge_em(maze,edges):
+	final = []
+	maze = for_rep(maze)
+	for x in range(0,len(maze)):
+		finaly = []
+		for y in range(0,len(maze[0])):
+			if edges[x][y]=='EE':
+				finaly.append('EE')
+			else:
+				finaly.append(maze[x][y])
+		final.append(finaly)
+	return final
+	
+def plot_edges(edges,edges2):
+	printee(edges)
+	edges = fatter(edges,'-0')
+	edges2 = fatter(edges2,'-0')
 	final=[]
 	for y in range(1,len(edges)-1):
 		final1=[]
 		for x in range(1,len(edges[0])-1):
 			if edges[y][x]=='-7':
-				#if ' ' in edges[y+0][x-1]:
-				#	edges[y+0][x-1]='EE'
-				if ' ' in edges[y-1][x-1]:
+				if '-' not in edges[y-1][x-1] and '-' not in edges[y][x-1] and '-' not in edges[y-1][x]:
 					edges[y-1][x-1]='EE'
-				if ' ' in edges[y+1][x-1]:
+				if '-' not in edges[y+1][x-1] and '-' not in edges[y][x-1] and '-' not in edges[y+1][x]:
 					edges[y+1][x-1]='EE'
-				#if ' ' in edges[y-1][x+0]:
-				#	edges[y-1][x+0]='EE'
-				#if ' ' in edges[y+1][x+0]:
-				#	edges[y+1][x+0]='EE'
-				#if ' ' in edges[y+0][x+1]:
-				#	edges[y+0][x+1]='EE'
-				if ' ' in edges[y-1][x+1]:
+				if '-' not in edges[y-1][x+1] and '-' not in edges[y][x+1] and '-' not in edges[y-1][x]:
 					edges[y-1][x+1]='EE'
-				if ' ' in edges[y+1][x+1]:
+				if '-' not in edges[y+1][x+1] and '-' not in edges[y][x+1] and '-' not in edges[y+1][x]:
+					edges[y+1][x+1]='EE'
+			if edges[y][x] in ['-4','-5','-6'] and edges2[y][x] in ['-2','-3']:
+				if '-' not in edges[y-1][x-1] and '-' not in edges[y][x-1] and '-' not in edges[y-1][x]:
+					edges[y-1][x-1]='EE'
+				if '-' not in edges[y+1][x-1] and '-' not in edges[y][x-1] and '-' not in edges[y+1][x]:
+					edges[y+1][x-1]='EE'
+				if '-' not in edges[y-1][x+1] and '-' not in edges[y][x+1] and '-' not in edges[y-1][x]:
+					edges[y-1][x+1]='EE'
+				if '-' not in edges[y+1][x+1] and '-' not in edges[y][x+1] and '-' not in edges[y+1][x]:
 					edges[y+1][x+1]='EE'
 	print('\n\n')
 	return skimp(edges)
 	
-def get_edges(maze):
-	finaly = fatter(maze)
+def get_edges4(maze):
+	finaly = fatter(maze,'1')
+	final = []
+	for y in range(1,len(maze)+1):
+		final1=[]
+		for x in range(1,len(maze[0])+1):
+			o = 0
+			if finaly[y][x]=='1':
+				o-=4
+			if finaly[y+0][x-1]=='1':
+				o+=1
+			if finaly[y-1][x+0]=='1':
+				o+=1
+			if finaly[y+1][x+0]=='1':
+				o+=1
+			if finaly[y+0][x+1]=='1':
+				o+=1
+			p=o
+			o=str(o)
+			if p>-1:
+				o=' '+o
+			final1.append(o)
+		final.append(final1)
+	return final
+	
+def get_edges8(maze):
+	finaly = fatter(maze,'1')
 	final = []
 	for y in range(1,len(maze)+1):
 		final1=[]
@@ -96,14 +143,14 @@ def get_edges(maze):
 		final.append(final1)
 	return final
 	
-def fatter(list):
-	finaly = [[' 0']*(len(list[0])+2)]
+def fatter(list,hold):
+	finaly = [[hold]*(len(list[0])+2)]
 	for ele in list:
 		toap = []
-		f = [' 0']
+		f = [hold]
 		for item in ele:
 			f.append(item)
-		f.append(' 0')
+		f.append(hold)
 		finaly.append(f)
 	finaly.append(finaly[0])
 	return finaly
