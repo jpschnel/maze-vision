@@ -2,13 +2,12 @@
 
 def maze_vision():
 	path= ''
-	
 	maze=[]
-
-	maze.append(list('000001111111111102'))
-	maze.append(list('000000000011000000'))
-	maze.append(list('000110000000011110'))
-	maze.append(list('000031111111111110'))
+	maze.append(list('000000000000000000002'))
+	maze.append(list('000000000000000000000'))
+	maze.append(list('000000000000000000000'))
+	maze.append(list('000000000000001000000'))
+	maze.append(list('000300000000111100000'))
 	#print(maze)
 	fx=0
 	fy=0
@@ -27,21 +26,102 @@ def maze_vision():
 	edges4 = get_edges4(maze)
 	edges8 = get_edges8(maze)
 	edges = plot_edges(edges8,edges4)
-	printee(edges4)
+	ng = edges[1]
+	edges = edges[0]
+	ng.insert(0,(sy,sx))
+	ng.append((fy,fx))
+	print(ng)
 	print('\n')
 	printee(edges)
 	print('\n')
-	printee(for_rep(maze))
+	#printee(for_rep(maze))
 	edge_maze=merge_em(maze,edges)
-	print('\n')
+	#print('\n')
 	printee(edge_maze)
+	wata = False
+	#if findd(ng[0][1],ng[0][0],ng[1][0],edge_maze):
+	#	if findl(ng[1][0],ng[0][1],ng[1][1],edge_maze):
+	#		print("fooka")
+	graph = get_nodes(ng,edge_maze,[])
+	printee(graph)
 	print("sx="+str(sx))
 	print("sy="+str(sy))
 	print("fx="+str(fx))
 	print("fy="+str(fy))
-	ans= distance(maze,sx,sy,fx,fy)
-	print ("the shortest path is "+ans+ " spaces")
+	#ans= distance(maze,sx,sy,fx,fy)
+	#print ("the shortest path is "+ans+ " spaces")
 	print(path)
+	
+def get_nodes(ng,edge_maze,explored):
+	i = 0
+	j = 0
+	nodes = []
+	for i in range(0,len(ng)):
+		connected0 = True
+		connected1 = True
+		direction = 'v'
+		#print("Doing:"+str(i)+" now.")
+		for j in range(i+1,len(ng)):
+			#print("Doing:"+str(j)+" now.")
+			if ((ng[i][0]<ng[j][0] and not findd(ng[i][1],ng[i][0],ng[j][0],edge_maze)) or (ng[i][1]>ng[j][1] and not findl(ng[j][0],ng[i][1],ng[j][1],edge_maze)) or (ng[i][0]>ng[j][0] and not findu(ng[i][1],ng[i][0],ng[j][0],edge_maze)) or (ng[i][1]<ng[j][1] and not findr(ng[j][0],ng[i][1],ng[j][1],edge_maze))):
+				connected0 = False
+				direction = 'h'
+			if ((ng[i][0]<ng[j][0] and not findd(ng[j][1],ng[i][0],ng[j][0],edge_maze)) or (ng[i][1]>ng[j][1] and not findl(ng[i][0],ng[i][1],ng[j][1],edge_maze)) or (ng[i][0]>ng[j][0] and not findu(ng[j][1],ng[i][0],ng[j][0],edge_maze)) or (ng[i][1]<ng[j][1] and not findr(ng[i][0],ng[i][1],ng[j][1],edge_maze))):
+				connected1= False
+			if connected0 == True or connected1 == True :
+				dis = abs(ng[i][0]-ng[j][0])+abs(ng[i][1]-ng[j][1])
+				#print("fooka "+str((i,j,dis,direction)))
+				nodes.append((i,j,dis,direction))
+	#if findd(ng[0][1],ng[0][0],ng[1][0],edge_maze):
+#		if findl(ng[1][0],ng[0][1],ng[1][1],edge_maze):
+#			dis = abs(ng[0][0]-ng[1][0])+abs(ng[0][1]-ng[1][1])
+#			print("fooka"+str(dis))
+	print("UD")
+	return nodes
+
+def generator(nodes,i,j,direction):
+	print("UD")
+
+	
+def findu(x,s,d,maze):
+	while s!=d:
+		s=s-1
+		#print(s)
+		if s== -1:
+			return False
+		if maze[s][x]==' 1':
+			return False
+	return True
+	
+def findd(x,s,d,maze):
+	while s!=d:
+		s=s+1
+		#print(s)
+		if s== len(maze):
+			return False
+		if maze[s][x]==' 1':
+			return False
+	return True
+	
+def findl(y,s,d,maze):
+	while s!=d:
+		s=s-1
+		#print(s)
+		if s== -1:
+			return False
+		if maze[y][s]==' 1':
+			return False
+	return True
+	
+def findr(y,s,d,maze):
+	while s!=d:
+		s=s+1
+		#print(s)
+		if s == len(maze):
+			return False
+		if maze[y][s]==' 1' :
+			return False
+	return True
 
 def merge_em(maze,edges):
 	final = []
@@ -57,33 +137,53 @@ def merge_em(maze,edges):
 	return final
 	
 def plot_edges(edges,edges2):
-	printee(edges)
+	#printee(edges)
 	edges = fatter(edges,'-0')
 	edges2 = fatter(edges2,'-0')
 	final=[]
+	nodachi = []
 	for y in range(1,len(edges)-1):
 		final1=[]
 		for x in range(1,len(edges[0])-1):
 			if edges[y][x]=='-7':
 				if '-' not in edges[y-1][x-1] and '-' not in edges[y][x-1] and '-' not in edges[y-1][x]:
 					edges[y-1][x-1]='EE'
+					nodachi.append((y-2,x-2))
 				if '-' not in edges[y+1][x-1] and '-' not in edges[y][x-1] and '-' not in edges[y+1][x]:
 					edges[y+1][x-1]='EE'
+					nodachi.append((y,x-2))
 				if '-' not in edges[y-1][x+1] and '-' not in edges[y][x+1] and '-' not in edges[y-1][x]:
 					edges[y-1][x+1]='EE'
+					nodachi.append((y-2,x))
 				if '-' not in edges[y+1][x+1] and '-' not in edges[y][x+1] and '-' not in edges[y+1][x]:
 					edges[y+1][x+1]='EE'
+					nodachi.append((y,x))
 			if edges[y][x] in ['-4','-5','-6'] and edges2[y][x] in ['-2','-3']:
 				if '-' not in edges[y-1][x-1] and '-' not in edges[y][x-1] and '-' not in edges[y-1][x]:
 					edges[y-1][x-1]='EE'
+					nodachi.append((y-2,x-2))
 				if '-' not in edges[y+1][x-1] and '-' not in edges[y][x-1] and '-' not in edges[y+1][x]:
 					edges[y+1][x-1]='EE'
+					nodachi.append((y,x-2))
 				if '-' not in edges[y-1][x+1] and '-' not in edges[y][x+1] and '-' not in edges[y-1][x]:
 					edges[y-1][x+1]='EE'
+					nodachi.append((y-2,x))
 				if '-' not in edges[y+1][x+1] and '-' not in edges[y][x+1] and '-' not in edges[y+1][x]:
 					edges[y+1][x+1]='EE'
-	print('\n\n')
-	return skimp(edges)
+					nodachi.append((y,x))
+	#print('\n\n')
+	print(nodachi)
+	return skimp(edges),nodachi
+	
+def add_node(nx,ny):
+	d = edge_node
+	d.x=nx
+	d.y=ny
+	return d
+	
+def print_node(nodes):
+	for ele in nodes:
+		print(ele.x,ele.y)
 	
 def get_edges4(maze):
 	finaly = fatter(maze,'1')
@@ -277,6 +377,9 @@ def distance(maze, sx, sy, fx, fy):
 #	return min(updist,downdist,rightdist,leftdist)
 #	sum2= min(rightdist,leftdist)
 #	return min(sum2,sum1)
-	
+
+class edge_node:
+	x=0
+	y=0
 		
 maze_vision()
