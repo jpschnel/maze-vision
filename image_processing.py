@@ -15,7 +15,7 @@ def applyFilter(dimensions,filter_string, img_array,coeff):
            for y in range(0,dimensions[1]):
                row.append(int(filter_string[x*dimensions[0]+y]))   
            filter_grid.append(row)
-       #print(filter_grid)
+      #print(filter_grid)
       # print(img_array[0])
       # print(img_array[1])
       # print(img_array[2])
@@ -61,22 +61,23 @@ def main():
             if img_arr[i][j]==255:
                 img_arr[i][j]=1
     print(img_arr)
-    coeff=.2
-    val = applyFilter([x,y],filter_string, img_arr,coeff)
-    if type(val)==str:
-        return -1
-    print(val) 
+    coeff=1
+    #val = applyFilter([x,y],filter_string, img_arr,coeff)
+    #if type(val)==str:
+        #return -1
+    #print(val) 
    # cv.imwrite('x.jpg',val)
    # img_x=cv.imread('x.jpg')
-    for i in range(0,len(val)):
-        for j in range(0,len(val[0])):
-            if val[i][j]==1:
-                val[i][j]=255
-    cv.imwrite('x.jpg',val)
-    img_x=cv.imread('x.jpg') 
-    cv.imshow('x',img_x)
-   # cv.imshow('picture',img)
-   # cv.imshow('canny',img_canny)
+    #for i in range(0,len(val)):
+     #   for j in range(0,len(val[0])):
+      #      if (val[i][j]/5)>.5:
+       #         val[i][j]=255
+    #cv.imwrite('x.jpg',val)
+    #img_x=cv.imread('x.jpg') 
+    #cv.imshow('x',img_x)
+    cv.imshow('picture',img)
+    cv.imshow('canny',img_canny)
+    imsave('picture_canny.jpg',img_canny)
     cv.waitKey(0)
     
     
