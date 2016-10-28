@@ -42,7 +42,7 @@ def main():
     res=cv.matchTemplate(Source_img,End_img,method)
     min_val,max_val,min_loc,max_loc=cv.minMaxLoc(res)
     top_left_end=max_loc
-    bottom_right_end=top_left_end[0]+len(Robot_img[0]),top_left_end[1]+len(Robot_img)
+    bottom_right_end=top_left_end[0]+len(End_img[0]),top_left_end[1]+len(End_img)
 
     canny_img=imread('picture_canny.jpg')
     
@@ -58,9 +58,9 @@ def main():
             else:
                  canny_img_array[i][j]=0
     new_img_array=np.asarray(new_img,dtype="int32")
-    print(new_img_array)
-    print('x')
-    print(canny_img_array)
+    #print(new_img_array)
+    #print('x')
+    #print(canny_img_array)
     for i in range(0,len(new_img_array)):
         for j in range(0,len(new_img[0])):
             if new_img_array[i][j][0]==0 and new_img_array[i][j][2]==0:
@@ -69,9 +69,17 @@ def main():
                 #new_img_array[i][j]=canny_img_array[i][j]
     
     cv.imwrite('tmp.jpg',new_img_array)
-    new_img=imread('tmp.jpg') 
-    cv.imshow('img',new_img)
+    new_img=imread('tmp.jpg')
+
+
+
+    cv.imshow('robot_template',imresize(Robot_img,(len(Robot_img)*2,len(Robot_img[0])*2)))
+    cv.imshow('end_template',imresize(End_img,(len(End_img)*2,len(End_img[0])*2)))
+    cv.imshow('original_img',Source_img)
+    cv.imshow('extracted_img',new_img)
+
     cv.waitKey(0)
+    imsave('extracted.jpg',new_img)
     #print(result_columns)
     #print(result_rows)
     #cv.matchTemplate(img
