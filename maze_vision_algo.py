@@ -3,18 +3,16 @@
 def maze_vision():
 	path= ''
 	maze=[]
-	maze.append(list('000000001000000000002'))
-	maze.append(list('000001001000100000000'))
-	maze.append(list('000001001000100000000'))
-	maze.append(list('000001001000100000000'))
-	maze.append(list('000301000000100000000'))
-	#print(maze)
+	maze.append(list('000000002000000'))
+	maze.append(list('000000000001100'))
+	maze.append(list('110000111110000'))
+	maze.append(list('111001100011100'))
+	maze.append(list('000001100030001'))
+	maze.append(list('111111110001001'))
 	fx=0
 	fy=0
 	sx=0
 	sy=0
-	#print(maze[0][8])
-	#print(len(maze[0]))
 	for x in range(0,len(maze[0])):
 		for y in range(0,len(maze)):
 			if maze[y][x]=='2':
@@ -30,23 +28,20 @@ def maze_vision():
 	edges = edges[0]
 	ng.insert(0,(sy,sx))
 	ng.append((fy,fx))
-	print(ng)
-	print('\n')
-	printee(edges)
-	print('\n')
-	#printee(for_rep(maze))
 	edge_maze=merge_em(maze,edges)
-	#print('\n')
-	printee(edge_maze)
+	#printee(edge_maze)
 	wata = False
-	#if findd(ng[0][1],ng[0][0],ng[1][0],edge_maze):
-	#	if findl(ng[1][0],ng[0][1],ng[1][1],edge_maze):
-	#		print("fooka")
 	graph = get_nodes(ng,edge_maze,[])
-	printee(graph)
+	#printee(graph)
 	compressed = compress(graph,ng)
-	print('\n')
-	printee(compressed)
+	#printee(compressed)
+	#print('\n')
+	#printee(compressed)
+	sp = shortest_path(compressed)
+	#print(sp)
+	#print(ng)
+	path = retrace(sx,sy,sp,ng)
+	#printee(edge_maze)
 	print("sx="+str(sx))
 	print("sy="+str(sy))
 	print("fx="+str(fx))
@@ -55,71 +50,125 @@ def maze_vision():
 	#print ("the shortest path is "+ans+ " spaces")
 	print(path)
 
+def retrace(sx,sy,sp,ng):
+	#print(sy,sx)
+	fullstring=''
+	for ele in sp:
+		weep=''
+		#print(ele)
+		if ele[2]=='v':
+			#print(ng[ele[0]])
+			tmp = sy-ng[ele[0]][0]
+			#print(tmp)
+			if tmp<0:
+				weep=weep+'d'*abs(tmp)
+			if tmp>0:
+				weep=weep+'u'*abs(tmp)
+			tmp = sx-ng[ele[0]][1]
+			#print(tmp)
+			if tmp<0:
+				weep=weep+'r'*abs(tmp)
+			if tmp>0:
+				weep=weep+'l'*abs(tmp)
+			sy=ng[ele[0]][0]
+			sx=ng[ele[0]][1]
+		if ele[2]=='h':
+			#print(ng[ele[0]])
+			#print(ng[ele[0]])
+			tmp = sx-ng[ele[0]][1]
+			#print(tmp)
+			if tmp<0:
+				weep=weep+'r'*abs(tmp)
+			if tmp>0:
+				weep=weep+'l'*abs(tmp)
+			tmp = sy-ng[ele[0]][0]
+			#print(tmp)
+			if tmp<0:
+				weep=weep+'d'*abs(tmp)
+			if tmp>0:
+				weep=weep+'u'*abs(tmp)
+			sy=ng[ele[0]][0]
+			sx=ng[ele[0]][1]
+		fullstring+=weep
+		#print(weep)
+	#print(fullstring)
+	#print("UD")
+	return fullstring
+	
+#def reget(s,d):
+	
+
 def compress(graph,edges):
 	directed = []
-	print(graph)
-	print(edges)
 	for i in range(0,len(edges)):
 		directed.append([i])
 	for i in range(0,len(graph)):
-		directed[graph[i][0]].append((graph[i][1],graph[i][2]))
+		directed[graph[i][0]].append((graph[i][1],graph[i][2],graph[i][3]))
 	for i in range(0,len(graph)):
-		directed[graph[i][1]].append((graph[i][0],graph[i][2]))
+		new = ''
+		if graph[i][3]=='v':
+			new='h'
+		else:
+			new='v'
+		directed[graph[i][1]].append((graph[i][0],graph[i][2],new))
 	return directed
 		
+def shortest_path(graph):
+	dist = []
+	previous = []
+	current = 0
+	dist.append(0)
+	remaining=[]
+	remaining.append(graph[0][0])
+	previous.append([])
+	for i in range(1,len(graph)):
+		remaining.append(graph[i][0])
+		dist.append(999999)
+		previous.append([])
+	while len(remaining)!=0:
+		sss = find_smallest(dist,remaining)
+		current=remaining[sss]
+		remaining.pop(sss)
+		for i in range(1,len(graph[current])):
+			alt = dist[current]+graph[current][i][1]
+			if alt<dist[graph[current][i][0]]:
+				dist[graph[current][i][0]]=alt
+				previous[graph[current][i][0]]=previous[current][:]
+				previous[graph[current][i][0]].append(graph[current][i])
+	return previous[len(previous)-1]
 	
-#def shortest_path(graph):
-#	dist = []
-#	prev = []
-#	Q = []
-#	dist.append([0])
-#	for i in range(1,len(graph)):
-#		dist.append(9999999)
-#		prev.append(-1)
-#		q.append(graph[i])
-#	while len(Q)!=0:
+def find_smallest(dist,remaining):
+	smallest = 999999999999999
+	ind = 0
+	for i in range(0,len(remaining)):
+		num = remaining[i]
+		if dist[num]<smallest:
+			smallest = dist[num]
+			ind = i
+	return ind
 	
 def get_nodes(ng,edge_maze,explored):
 	i = 0
 	j = 0
 	nodes = []
 	for i in range(0,len(ng)):
-		#print("Doing:"+str(i)+" now.")
 		for j in range(i+1,len(ng)):
 			connected0 = True
 			connected1 = True
 			direction = 'v'
-			#print("Doing::::"+str(j)+" now.")
-			#print(connected0,connected1)
 			if ((ng[i][0]<ng[j][0] and not findd(ng[i][1],ng[i][0],ng[j][0],edge_maze)) or (ng[i][1]>ng[j][1] and not findl(ng[j][0],ng[i][1],ng[j][1],edge_maze)) or (ng[i][0]>ng[j][0] and not findu(ng[i][1],ng[i][0],ng[j][0],edge_maze)) or (ng[i][1]<ng[j][1] and not findr(ng[j][0],ng[i][1],ng[j][1],edge_maze))):
 				connected0 = False
 				direction = 'h'
-				#print("Direction V failed")
 			if ((ng[i][1]<ng[j][1] and not findr(ng[i][0],ng[i][1],ng[j][1],edge_maze)) or (ng[i][1]>ng[j][1] and not findl(ng[i][0],ng[i][1],ng[j][1],edge_maze)) or (ng[i][0]>ng[j][0] and not findu(ng[j][1],ng[i][0],ng[j][0],edge_maze)) or (ng[i][0]<ng[j][0] and not findd(ng[j][1],ng[i][0],ng[j][0],edge_maze))):
 				connected1= False
-				#print("Direction H failed")
-			#print(connected0,connected1)
 			if connected0 == True or connected1 == True :
 				dis = abs(ng[i][0]-ng[j][0])+abs(ng[i][1]-ng[j][1])
-				#print("fooka "+str((i,j,dis,direction)))
 				nodes.append((i,j,dis,direction))
-				#nodes.append((j,i,dis,direction))
-	#if findd(ng[0][1],ng[0][0],ng[1][0],edge_maze):
-#		if findl(ng[1][0],ng[0][1],ng[1][1],edge_maze):
-#			dis = abs(ng[0][0]-ng[1][0])+abs(ng[0][1]-ng[1][1])
-#			print("fooka"+str(dis))
-	print("UD")
 	return nodes
-	
-
-def generator(nodes,i,j,direction):
-	print("UD")
-
 	
 def findu(x,s,d,maze):
 	while s!=d:
 		s=s-1
-		#print(s)
 		if s== -1:
 			return False
 		if maze[s][x]==' 1':
@@ -129,7 +178,6 @@ def findu(x,s,d,maze):
 def findd(x,s,d,maze):
 	while s!=d:
 		s=s+1
-		#print(s)
 		if s== len(maze):
 			return False
 		if maze[s][x]==' 1':
@@ -139,7 +187,6 @@ def findd(x,s,d,maze):
 def findl(y,s,d,maze):
 	while s!=d:
 		s=s-1
-		#print(s)
 		if s== -1:
 			return False
 		if maze[y][s]==' 1':
@@ -149,7 +196,6 @@ def findl(y,s,d,maze):
 def findr(y,s,d,maze):
 	while s!=d:
 		s=s+1
-		#print(s)
 		if s == len(maze):
 			return False
 		if maze[y][s]==' 1' :
@@ -170,7 +216,6 @@ def merge_em(maze,edges):
 	return final
 	
 def plot_edges(edges,edges2):
-	#printee(edges)
 	edges = fatter(edges,'-0')
 	edges2 = fatter(edges2,'-0')
 	final=[]
@@ -204,20 +249,8 @@ def plot_edges(edges,edges2):
 				if '-' not in edges[y+1][x+1] and '-' not in edges[y][x+1] and '-' not in edges[y+1][x]:
 					edges[y+1][x+1]='EE'
 					nodachi.append((y,x))
-	#print('\n\n')
-	print(nodachi)
 	return skimp(edges),nodachi
-	
-def add_node(nx,ny):
-	d = edge_node
-	d.x=nx
-	d.y=ny
-	return d
-	
-def print_node(nodes):
-	for ele in nodes:
-		print(ele.x,ele.y)
-	
+
 def get_edges4(maze):
 	finaly = fatter(maze,'1')
 	final = []
@@ -307,6 +340,7 @@ def for_rep(maze):
 	return final
 	
 def printee(what):
+	print('\n')
 	for ele in what:
 		print(ele)
 	
@@ -411,8 +445,4 @@ def distance(maze, sx, sy, fx, fy):
 #	sum2= min(rightdist,leftdist)
 #	return min(sum2,sum1)
 
-class edge_node:
-	x=0
-	y=0
-		
 maze_vision()
