@@ -1,14 +1,27 @@
 # 0 = open space, 1=boundary , 2= the robot, 3= finish
 
+
+def get_maze():
+	f = open ('maze.txt', 'r')
+	test = str(f.read())
+	d=[]
+	test=str(test)
+	tmp = ''
+	tmpl=[]
+	for i in range(0,len(test)):
+		if test[i]=='\r' and tmp !='':
+			d.append(tmpl)
+			tmpl = []
+			tmp=''
+		if test[i]!='\n' and test[i]!='\r':
+			tmpl.append(test[i])
+			tmp+=test[i]
+	return d
+
+
 def maze_vision():
 	path= ''
-	maze=[]
-	maze.append(list('000000002000000'))
-	maze.append(list('000000000001100'))
-	maze.append(list('110000111110000'))
-	maze.append(list('111001100011100'))
-	maze.append(list('000001100030001'))
-	maze.append(list('111111110001001'))
+	maze= get_maze()
 	fx=0
 	fy=0
 	sx=0
