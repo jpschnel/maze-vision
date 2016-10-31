@@ -1,0 +1,14 @@
+date: October 19, 2016
+meeting_type: ta
+attendance: [jrcharlo, nwhahn, jpschnel, murphy53]
+absent: [jrcharlo]
+excused_absences: [{ubit: jrcharlo : reason: Told us ahead of time that he had a meeting as a ta for another class.}]
+task_progress: [
+  {ubit: jrcharlo, progress: absent}
+  {ubit: nwhahn, progress: brainstormed shortest path algorithm}
+  {ubit: jpschnel, progress: brainstormed shortest path algorithm}
+  {ubit: murphy53, progress: brainstormed shortest path algorithm}
+  ]
+issues: []
+Notes:  | 
+   Dijkstra's algorithm was too costly in time so we spent this meeting with the ta discussing a possible alternative.

@@ -1,0 +1,14 @@
+date: October 10, 2016
+meeting_type: group
+attendance: [jrcharlo, nwhahn, jpschnel, murphy53]
+absent: []
+excused_absences: []
+task_progress: [ 
+  {ubit: jrcharlo, progress: testing of proper communication between python files}
+  {ubit: nwhahn, progress: processed images to create matrix mazes to solve}
+  {ubit: jpschnel, progress: Wrote a shortest path algorithm}
+  {ubit: murphy53, progress: Image processing research}
+  ]
+issues: []
+Notes:  | 
+   shortest path algo is based upon Dijkstra's algorithm.

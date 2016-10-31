@@ -1,0 +1,14 @@
+date: October 24, 2016
+meeting_type: group
+attendance: [nwhahn, jpschnel, jrcharlo, murphy53]
+absent: []
+excused_absences: []
+task_progress: [ 
+  {ubit: nwhahn, progress: added edge detection to image processing}
+  {ubit: jpschnel, progress: added reading maze from file rather than hardcoded }
+  {ubit: jrcharlo, progress: tested output behavior of robot with new algo }
+  {ubit: murphy53, progress: developed a much more efficient shortest path algorithm}
+  ]
+issues: []
+Notes:  |
+   new algorithm uses corners as points of interest rather than simply using a matrix.
