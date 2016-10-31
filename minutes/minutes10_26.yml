@@ -1,0 +1,14 @@
+date: October 26, 2016
+meeting_type: ta
+attendance: [jrcharlo, nwhahn, jpschnel, murphy53]
+absent: []
+excused_absences: []
+task_progress: [
+  {ubit: jrcharlo, progress: Discussed algorithm improvements }
+  {ubit: nwhahn, progress: demonstrated edge detection software}
+  {ubit: jpschnel, progress: proposed possible improvements to edge detection}
+  {ubit: murphy53, progress: discussed the optomized path algorithm}
+  ]
+issues: []
+Notes:  | 
+   great job team!

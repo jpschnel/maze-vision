@@ -1,0 +1,16 @@
+date: October 17, 2016
+meeting_type: group 
+attendance: [nwhahn, jrcharlo, jpschnel, murphy53]
+absent: []
+excused_absences: []
+task_progress: [
+  {ubit: jrcharlo, progress: updated shortest path algo to output the path in a form that florence can understand}
+  {ubit: nwhahn, progress: image processing improvements}
+  {ubit: jpschnel, progress: algorithm research}
+  {ubit: murphy53, progress: edge case testing}
+  ]
+issues: [ 
+  {ubit: jpschnel, issue: need new shortest path algo because Dijkstra's shortest path algorithm is inherently too expensive even with attempted optimization.}
+  ]
+Notes:  |
+   

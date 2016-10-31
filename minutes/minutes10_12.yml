@@ -1,0 +1,15 @@
+date: October 12, 2016
+meeting_type: ta
+attendance: [jrcharlo, nwhahn, jpschnel, murphy53]
+absent: []
+excused_absences: []
+task_progress: [ 
+  {ubit: jrcharlo, progress: discussed robot movement}
+  {ubit: nwhahn, progress: discussed image processing hardware}
+  {ubit: jpschnel, progress: discussed shortest path algorithm}
+  {ubit: murphy53, progress: discussed Image processing software}
+  ]
+issues: [
+  {ubit: jpschnel, issue: shortest path algorithm runs for far too long on even relatively small maze inputs.}
+  ]
+Notes:  |
