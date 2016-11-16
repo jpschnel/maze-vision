@@ -72,8 +72,8 @@ LEFT_TRIM   = 0
 RIGHT_TRIM  = 0
 
 robot = Robot.Robot(left_trim=LEFT_TRIM, right_trim=RIGHT_TRIM)
-#path = 'llulllddrdddlddrrrdddrrru'
-#di = 3		#direction: 0 = up, 1 = right, 2 = down, 3 = left
+path = str(sys.argv[1])
+di = int(sys.argv[2])		#direction: 0 = up, 1 = right, 2 = down, 3 = left
 #straight line variables (t,s)
 t = 1.0		#time: seconds that the motors are running
 s = 50		#speed: controls speed (going straight), can be value 0-255
@@ -83,4 +83,4 @@ s90 = 50
 #180 degree turn variables (t180,s180)
 t180 = 1.0
 s180 = 50
-SolvePath(str(sys.argv[1]), int(sys.argv[2]))
+SolvePath(path, di)
