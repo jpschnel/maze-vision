@@ -6,7 +6,7 @@ import copy
 
 
 def main():
-    Source_img= imread('picture.jpg')
+    Source_img= imread('Picture.jpg')
     new_img=copy.deepcopy(Source_img)
     Robot_img=imread('robot_template.jpg')
     End_img=imread('end_template.jpg')
@@ -73,12 +73,12 @@ def main():
 
 
 
-    cv.imshow('robot_template',imresize(Robot_img,(len(Robot_img)*2,len(Robot_img[0])*2)))
-    cv.imshow('end_template',imresize(End_img,(len(End_img)*2,len(End_img[0])*2)))
-    cv.imshow('original_img',Source_img)
-    cv.imshow('extracted_img',new_img)
+    #cv.imshow('robot_template',imresize(Robot_img,(len(Robot_img)*2,len(Robot_img[0])*2)))
+    #cv.imshow('end_template',imresize(End_img,(len(End_img)*2,len(End_img[0])*2)))
+    #cv.imshow('original_img',Source_img)
+    #cv.imshow('extracted_img',new_img)
 
-    cv.waitKey(0)
+    #cv.waitKey(0)
     imsave('extracted.jpg',new_img)
     #print(result_columns)
     #print(result_rows)

@@ -6,7 +6,7 @@ from scipy.misc import imread,imsave
 import Solve_path
 def maze_vision():
 	pi_car= '192.168.0.12'
-	pi_camera='192.168.1.145'
+	pi_camera='nwhahn@timberlake.cse.buffalo.edu'
 
 	#os.system("echo this")
 ##################################################################
@@ -33,8 +33,7 @@ def maze_vision():
 #
 #############################################################
 
-        os.system('python image_processing.py')
-	
+
 
 
 
