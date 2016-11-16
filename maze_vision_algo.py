@@ -32,7 +32,7 @@ def maze_vision():
 	#printee(maze)
 	wata = False
 	graph = get_nodes(ng,edge_maze,[])
-	#printee(graph)
+	printee(graph)
 	compressed = compress(graph,ng)
 	#printee(compressed)
 	#print('\n')
@@ -40,6 +40,7 @@ def maze_vision():
 	sp = shortest_path(compressed)
 	#print(sp)
 	#print(ng)
+	#print(renode(sp,ng))
 	path = retrace(sx,sy,sp,ng)
 	#printee(edge_maze)
 	compromise(edge_maze)
@@ -53,9 +54,19 @@ def maze_vision():
 	et = datetime.now()
 	et = et.microsecond
 	#path = normal(path)
+	write_tofile(sp,"ZShortest_Path.txt")
+	write_tofile(ng,"ZNode_Graph.txt")
+	write_tofile(edge_maze,"ZEdge_maze.txt")
+	write_tofile(graph,"ZGraph.txt")
 	print("Completed in "+str(float(et)/1000000-float(st)/1000000)+" seconds.")
 	print(path)
 	write_string(path)
+
+def renode(sp,ng):
+	final = []
+	for i in range(len(sp)):
+		final.append(ng[sp[i][0]])
+	return final
 
 def retrace(sx,sy,sp,ng):
 	#print(sy,sx)
@@ -153,6 +164,8 @@ def shortest_path(graph):
 				dist[graph[current][i][0]]=alt
 				previous[graph[current][i][0]]=previous[current][:]
 				previous[graph[current][i][0]].append(graph[current][i])
+				#print(previous[current],alt)
+				#time.sleep(.15)
 	return previous[len(previous)-1]
 	
 def find_smallest(dist,remaining):
@@ -170,7 +183,7 @@ def get_nodes(ng,edge_maze,explored):
 	j = 0
 	nodes = []
 	for i in range(0,len(ng)):
-		for j in range(i+1,len(ng)):
+		for j in range(len(ng)):
 			connected0 = True
 			connected1 = True
 			direction = 'v'
@@ -262,7 +275,7 @@ def plot_edges(edges,edges2):
 				if '-' not in edges[y+1][x+1] and '-' not in edges[y][x+1] and '-' not in edges[y+1][x]:
 					edges[y+1][x+1]='EE'
 					nodachi.append((y,x))
-			if edges[y][x] in ['-4','-5','-6'] and edges2[y][x] in ['-2','-3']:
+			if edges2[y][x] in ['-2','-3']:
 				if '-' not in edges[y-1][x-1] and '-' not in edges[y][x-1] and '-' not in edges[y-1][x]:
 					edges[y-1][x-1]='EE'
 					nodachi.append((y-2,x-2))
@@ -426,6 +439,14 @@ def get_maze():
 	if tmp!='':
 		d.append(tmpl)
 	return d
+
+def write_tofile(output,filename):
+	f = open(filename, 'w')
+	f.seek(0)
+	for ele in output:
+		f.write(str(ele))
+		f.write('\n')
+	f.close();
 	
 def write_string(output):
 	f = open('output', 'w')
