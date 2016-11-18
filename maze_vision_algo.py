@@ -6,6 +6,7 @@ def maze_vision():
 	path= ''
 	maze=[]
 	maze = get_maze()
+	printee(maze)
 	fx=0
 	fy=0
 	sx=0
@@ -32,7 +33,7 @@ def maze_vision():
 	#printee(maze)
 	wata = False
 	graph = get_nodes(ng,edge_maze,[])
-	printee(graph)
+	#printee(graph)
 	compressed = compress(graph,ng)
 	#printee(compressed)
 	#print('\n')
@@ -429,11 +430,11 @@ def get_maze():
 	tmp = ''
 	tmpl=[]
 	for i in range(0,len(test)):
-		if test[i]=='\r' and tmp !='':
+		if test[i]=='\n' and tmp !='':
 			d.append(tmpl)
 			tmpl = []
 			tmp=''
-		if test[i]!='\n' and test[i]!='\r':
+		if test[i]!='\n':
 			tmpl.append(test[i])
 			tmp+=test[i]
 	if tmp!='':
@@ -469,7 +470,7 @@ def compromise(maze):
 				ns+='2'
 			if ele[i]==' 3':
 				ns+='3'
-		print(ns)
+		#print(ns)
 	
 #	up= int(sy-1)
 #	down= int(sy+1)
