@@ -1,8 +1,8 @@
-# 0 = open space, 1=boundary , 2= the robot, 3= finish
-import time
-from datetime import datetime
 
-def maze_vision():
+#import time
+#from datetime import datetime
+
+def mvsp():
 	path= ''
 	maze=[]
 	maze = get_maze()
@@ -12,8 +12,8 @@ def maze_vision():
 	sx=0
 	sy=0
 	#st=strftime("%S", gmtime())
-	st = datetime.now()
-	st = st.microsecond
+	#st = datetime.now()
+	#st = st.microsecond
 	for x in range(0,len(maze[0])):
 		for y in range(0,len(maze)):
 			if maze[y][x]=='2':
@@ -52,14 +52,14 @@ def maze_vision():
 	#ans= distance(maze,sx,sy,fx,fy)
 	#print ("the shortest path is "+ans+ " spaces")
 	#et=strftime("%S", gmtime())
-	et = datetime.now()
-	et = et.microsecond
+	#et = datetime.now()
+	#et = et.microsecond
 	#path = normal(path)
 	write_tofile(sp,"ZShortest_Path.txt")
 	write_tofile(ng,"ZNode_Graph.txt")
 	write_tofile(edge_maze,"ZEdge_maze.txt")
 	write_tofile(graph,"ZGraph.txt")
-	print("Completed in "+str(float(et)/1000000-float(st)/1000000)+" seconds.")
+	#print("Completed in "+str(float(et)/1000000-float(st)/1000000)+" seconds.")
 	print(path)
 	write_string(path)
 
@@ -471,68 +471,3 @@ def compromise(maze):
 			if ele[i]==' 3':
 				ns+='3'
 		#print(ns)
-	
-#	up= int(sy-1)
-#	down= int(sy+1)
-#	left = int(sx-1)
-#	right = int(sx+1) 
-#	print(str(sx)+','+str(sy))
-	
-#	updist=3333333
-#	downdist=6666666
-#	leftdist=5555555
-#	rightdist=4444444
-#	if maze[sy][sx]=='3':						#reached finish			
-#		print(hit)
-#		return 0								#return
-#up		
-	
-#	if up >-1:
-#		if maze[sy][up]=='0':							#if this direction is open
-#			maze[sy][up]='4'							#mark it as traveled to
-#			path= path +'u'							#add that direction to final path
-#			updist= 1+ distance(maze,up,sy,fx,fy,path)	#calculate shortest dist from there
-		#if it makes it past here, that was not the shortest distance
-			#path= path[:-1]							#remove that direction from final path
-			#maze[sy][up]=0							#mark that direction as not traveled
-		
-#down
-	
-#	print(down)
-#	if down < (len(maze)-1):
-#		print('w')
-#		print(maze[down][sx])
-		
-
-#		if maze[down][sx]=='0':
-#			maze[sy][sx]='4'
-			#path path +'d'
-#			downdist= 1 + distance(maze,down,sy,fx,fy,path)
-			#path= path[:-1]
-			#maze[sy][down]='0'
-		#else:
-			#downdist=999999
-#left 
-#	if left>-1:
-#		if maze[left][sx]=='0':
-#			maze[left][sx]='4'
-#			path= path +'l'
-#			leftdist= 1+distance(maze,sx,left,fx,fy,path)
-#			path= path[:-1]
-#			maze[left][sx]='0'
-	
-#right
-#	if right<(len(maze[0])-1):
-#		if maze[sx][right]=='0':
-#			maze[sx][right]='4'
-#			path=path+'r'
-#			rightdist= 1+distance(maze,sx,right,fx,fy,path)
-#			path=path[:-1]
-#			maze[right][sx]='0'
-	#print(str(sx)+','+str(sy))	
-
-#	return min(updist,downdist,rightdist,leftdist)
-#	sum2= min(rightdist,leftdist)
-#	return min(sum2,sum1)
-
-maze_vision()

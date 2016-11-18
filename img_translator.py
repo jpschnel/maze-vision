@@ -1,10 +1,10 @@
-import copy
-def main():
+def trans_main():
 	#this script will convert a black and white image into a character array
 	#import image
 	import numpy
 	from scipy.misc import imread,imsave,imresize
 	from ops import avg,car_points,car_dim
+	import copy
 	#predefined values
 	BLACK= '[0 0 0]'
 	WHITE='255 255 255'
@@ -128,4 +128,3 @@ def printee(what):
 	print('\n')
 	for ele in what:
 		print(ele)
-main()
