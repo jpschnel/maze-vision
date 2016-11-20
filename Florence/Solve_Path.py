@@ -1,6 +1,6 @@
 #Usage
-#"python Solve_Path.py path direction"
-#where path is a string of characters (u,r,d,l) and direction is an integer (0 = up, 1 = right, 2 = down, 3 = left)
+#"python Solve_Path.py path"
+#where path is a string of characters (u,r,d,l)
 
 import time
 import Robot
@@ -19,43 +19,43 @@ def SolvePath(path, di):
 
 def up():
 	if (getDirection() == 1):
-		robot.left(s90,t90)	#Turn left 90 degrees
+		Florence.left(s90,t90)	#Turn left 90 degrees
 	if (getDirection() == 2):
-		robot.right(s180,t180)	#Turn right 180 degrees	
+		Florence.right(s180,t180)	#Turn right 180 degrees	
 	if (getDirection() == 3):
-		robot.right(s90,t90)	#Turn right 90 degrees
-	robot.forward(s, t)
+		Florence.right(s90,t90)	#Turn right 90 degrees
+	Florence.forward(s, t)
 	setDirection(0)
 
 
 def right():
 	if (getDirection() == 0):
-		robot.right(s90,t90)	#Turn right 90 degrees
+		Florence.right(s90,t90)	#Turn right 90 degrees
 	if (getDirection() == 2):
-		robot.left(s90,t90)	#Turn left 90 degrees
+		Florence.left(s90,t90)	#Turn left 90 degrees
 	if (getDirection() == 3):
-		robot.left(s180,t180)	#Turn left 180 degrees	
-	robot.forward(s, t)
+		Florence.left(s180,t180)	#Turn left 180 degrees	
+	Florence.forward(s, t)
 	setDirection(1)
 
 def down():
 	if (getDirection() == 0):
-		robot.right(s180,t180)	#Turn right 180 degrees
+		Florence.right(s180,t180)	#Turn right 180 degrees
 	if (getDirection() == 1):
-		robot.right(s90,t90)	#Turn right 90 degrees
+		Florence.right(s90,t90)	#Turn right 90 degrees
 	if (getDirection() == 3):
-		robot.left(s90,t90)	#Turn left 90 degrees
-	robot.forward(s, t)
+		Florence.left(s90,t90)	#Turn left 90 degrees
+	Florence.forward(s, t)
 	setDirection(2)
 
 def left():
 	if (getDirection() == 0):
-		robot.left(s90,t90)	#Turn left 90 degrees
+		Florence.left(s90,t90)	#Turn left 90 degrees
 	if (getDirection() == 1):
-		robot.right(s180,t180)	#Turn right 180 degrees
+		Florence.right(s180,t180)	#Turn right 180 degrees
 	if (getDirection() == 2):
-		robot.right(s90,t90)	#Turn right 90 degrees
-	robot.forward(s, t)
+		Florence.right(s90,t90)	#Turn right 90 degrees
+	Florence.forward(s, t)
 	setDirection(3)
 
 def setDirection(direction):
@@ -69,13 +69,13 @@ def getDirection():
 
 
 LEFT_TRIM   = 0
-RIGHT_TRIM  = 0
+RIGHT_TRIM  = -1
 
-robot = Robot.Robot(left_trim=LEFT_TRIM, right_trim=RIGHT_TRIM)
+Florence = Robot.Robot(left_trim=LEFT_TRIM, right_trim=RIGHT_TRIM)
 path = str(sys.argv[1])
-di = int(sys.argv[2])		#direction: 0 = up, 1 = right, 2 = down, 3 = left
+di = 2		#direction: 0 = up, 1 = right, 2 = down, 3 = left; direction is always initially set to down
 #straight line variables (t,s)
-t = 1.0		#time: seconds that the motors are running
+t = 0.33	#time: seconds that the motors are running
 s = 50		#speed: controls speed (going straight), can be value 0-255
 #90 degree turn variables (t90,s90)
 t90 = 0.5
