@@ -92,7 +92,15 @@ def trans_main():
 		#print(i)
 		for j in range(len(no[i])-1):
 			#print(j)
-			if no[i][j]==1:
+			if (i==0):
+				nono[i][j]=1
+			elif(j == 0):
+				nono[i][j]=1
+			elif (i==len(no)-1):
+				nono[i][j]=1
+			elif (j==(len(no[i])-2)):
+				nono[i][j+1]=1
+			elif no[i][j]==1:
 				uns+=1
 				#print(uns/ones)
 				for x in range(radis):
