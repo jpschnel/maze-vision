@@ -34,3 +34,8 @@ def car_dim(pt3):
 		if ele[1]>ys[1]:
 			ys[1]=ele[1]
 	return(xs,ys)
+
+def printee(what):
+	print('\n')
+	for ele in what:
+		print(ele)

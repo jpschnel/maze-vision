@@ -1,0 +1,8 @@
+(66, 44)
+
+
+sx=200
+sy=48
+fx=354
+fy=53
+ddddddrrrrrruuuuuu

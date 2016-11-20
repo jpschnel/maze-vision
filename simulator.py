@@ -34,7 +34,7 @@ def main():
 		sys.stderr.write("\x1b[2J\x1b[H")
 		printeint(maze)
 		print(i,string[i])
-		time.sleep(.05)
+		#time.sleep(.05)
 	
 def normal(string):
 	i=0
@@ -74,11 +74,11 @@ def get_maze():
 	tmp = ''
 	tmpl=[]
 	for i in range(0,len(test)):
-		if test[i]=='\r' and tmp !='':
+		if test[i]=='\n' and tmp !='':
 			d.append(tmpl)
 			tmpl = []
 			tmp=''
-		if test[i]!='\n' and test[i]!='\r':
+		if test[i]!='\n':
 			tmpl.append(test[i])
 			tmp+=test[i]
 	if tmp!='':

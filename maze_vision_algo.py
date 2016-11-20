@@ -1,31 +1,19 @@
-# 0 = open space, 1=boundary , 2= the robot, 3= finish
 
+#import time
+#from datetime import datetime
 
-def get_maze():
-	f = open ('maze.txt', 'r')
-	test = str(f.read())
-	d=[]
-	test=str(test)
-	tmp = ''
-	tmpl=[]
-	for i in range(0,len(test)):
-		if test[i]=='\r' and tmp !='':
-			d.append(tmpl)
-			tmpl = []
-			tmp=''
-		if test[i]!='\n' and test[i]!='\r':
-			tmpl.append(test[i])
-			tmp+=test[i]
-	return d
-
-
-def maze_vision():
+def mvsp(die):
 	path= ''
-	maze= get_maze()
+	maze=[]
+	maze = get_maze()
+	#printee(maze)
 	fx=0
 	fy=0
 	sx=0
 	sy=0
+	#st=strftime("%S", gmtime())
+	#st = datetime.now()
+	#st = st.microsecond
 	for x in range(0,len(maze[0])):
 		for y in range(0,len(maze)):
 			if maze[y][x]=='2':
@@ -42,7 +30,7 @@ def maze_vision():
 	ng.insert(0,(sy,sx))
 	ng.append((fy,fx))
 	edge_maze=merge_em(maze,edges)
-	#printee(edge_maze)
+	#printee(maze)
 	wata = False
 	graph = get_nodes(ng,edge_maze,[])
 	#printee(graph)
@@ -53,15 +41,60 @@ def maze_vision():
 	sp = shortest_path(compressed)
 	#print(sp)
 	#print(ng)
+	#print(renode(sp,ng))
 	path = retrace(sx,sy,sp,ng)
 	#printee(edge_maze)
-	print("sx="+str(sx))
-	print("sy="+str(sy))
-	print("fx="+str(fx))
-	print("fy="+str(fy))
+	compromise(edge_maze)
+	#print("sx="+str(sx))
+#	print("sy="+str(sy))
+#	print("fx="+str(fx))
+#	print("fy="+str(fy))
 	#ans= distance(maze,sx,sy,fx,fy)
 	#print ("the shortest path is "+ans+ " spaces")
+	#et=strftime("%S", gmtime())
+	#et = datetime.now()
+	#et = et.microsecond
+	#path = normal(path)
+	write_tofile(sp,"ZShortest_Path.txt")
+	write_tofile(ng,"ZNode_Graph.txt")
+	write_tofile(edge_maze,"ZEdge_maze.txt")
+	write_tofile(graph,"ZGraph.txt")
+	#print("Completed in "+str(float(et)/1000000-float(st)/1000000)+" seconds.")
+	path = restring(path,die)
 	print(path)
+	write_string(path)
+	return path
+
+def restring(path,die):
+	lastc=path[0]
+	amt=0
+	redo=[]
+	path+=path[len(path)-1]
+	path+='0'
+	np = ''
+	for i in range(len(path)):
+		#print(path[i])
+		if path[i]!=lastc:
+			div = 0
+			if lastc=='r' or lastc=='l':
+				amt=amt/(die[0]/3)
+			if lastc=='u' or lastc=='d':
+				amt=amt/(die[0]/3)
+			for j in range(amt):
+				np+=lastc
+			#redo.append("("+lastc+","+str(amt)+")")
+			
+			lastc=path[i]
+			amt=0
+		else:
+			amt+=1
+	return np
+
+def renode(sp,ng):
+	final = []
+	for i in range(len(sp)):
+		final.append(ng[sp[i][0]])
+	return final
 
 def retrace(sx,sy,sp,ng):
 	#print(sy,sx)
@@ -107,9 +140,20 @@ def retrace(sx,sy,sp,ng):
 	#print(fullstring)
 	#print("UD")
 	return fullstring
-	
-#def reget(s,d):
-	
+
+
+def normal(string):
+	i=0
+	ns = ''
+	changed=False
+	while i<len(string)-1:
+		if (string[i]=='l' and string[i+1] == 'r') or (string[i]=='r' and string[i+1] == 'l') or(string[i]=='u' and string[i+1] == 'd') or (string[i]=='d' and string[i+1] == 'u'):
+			tmp = string[:]
+			string = tmp[:i]+tmp[i+2:]
+			changed=True
+			i-=2
+		i+=1
+	return string
 
 def compress(graph,edges):
 	directed = []
@@ -148,6 +192,8 @@ def shortest_path(graph):
 				dist[graph[current][i][0]]=alt
 				previous[graph[current][i][0]]=previous[current][:]
 				previous[graph[current][i][0]].append(graph[current][i])
+				#print(previous[current],alt)
+				#time.sleep(.15)
 	return previous[len(previous)-1]
 	
 def find_smallest(dist,remaining):
@@ -165,7 +211,7 @@ def get_nodes(ng,edge_maze,explored):
 	j = 0
 	nodes = []
 	for i in range(0,len(ng)):
-		for j in range(i+1,len(ng)):
+		for j in range(len(ng)):
 			connected0 = True
 			connected1 = True
 			direction = 'v'
@@ -186,6 +232,8 @@ def findu(x,s,d,maze):
 			return False
 		if maze[s][x]==' 1':
 			return False
+		if maze[s][x]=='EE' and s!=d:
+			return False
 	return True
 	
 def findd(x,s,d,maze):
@@ -194,6 +242,8 @@ def findd(x,s,d,maze):
 		if s== len(maze):
 			return False
 		if maze[s][x]==' 1':
+			return False
+		if maze[s][x]=='EE' and s!=d:
 			return False
 	return True
 	
@@ -204,6 +254,8 @@ def findl(y,s,d,maze):
 			return False
 		if maze[y][s]==' 1':
 			return False
+		if maze[y][s]=='EE' and s!=d:
+			return False
 	return True
 	
 def findr(y,s,d,maze):
@@ -212,6 +264,8 @@ def findr(y,s,d,maze):
 		if s == len(maze):
 			return False
 		if maze[y][s]==' 1' :
+			return False
+		if maze[y][s]=='EE' and s!=d:
 			return False
 	return True
 
@@ -249,7 +303,7 @@ def plot_edges(edges,edges2):
 				if '-' not in edges[y+1][x+1] and '-' not in edges[y][x+1] and '-' not in edges[y+1][x]:
 					edges[y+1][x+1]='EE'
 					nodachi.append((y,x))
-			if edges[y][x] in ['-4','-5','-6'] and edges2[y][x] in ['-2','-3']:
+			if edges2[y][x] in ['-2','-3']:
 				if '-' not in edges[y-1][x-1] and '-' not in edges[y][x-1] and '-' not in edges[y-1][x]:
 					edges[y-1][x-1]='EE'
 					nodachi.append((y-2,x-2))
@@ -394,68 +448,53 @@ def distance(maze, sx, sy, fx, fy):
 		return up
 	else:
 		return down
-
-#	up= int(sy-1)
-#	down= int(sy+1)
-#	left = int(sx-1)
-#	right = int(sx+1) 
-#	print(str(sx)+','+str(sy))
-	
-#	updist=3333333
-#	downdist=6666666
-#	leftdist=5555555
-#	rightdist=4444444
-#	if maze[sy][sx]=='3':						#reached finish			
-#		print(hit)
-#		return 0								#return
-#up		
-	
-#	if up >-1:
-#		if maze[sy][up]=='0':							#if this direction is open
-#			maze[sy][up]='4'							#mark it as traveled to
-#			path= path +'u'							#add that direction to final path
-#			updist= 1+ distance(maze,up,sy,fx,fy,path)	#calculate shortest dist from there
-		#if it makes it past here, that was not the shortest distance
-			#path= path[:-1]							#remove that direction from final path
-			#maze[sy][up]=0							#mark that direction as not traveled
 		
-#down
+def get_maze():
+	f = open ('maze.txt', 'r')
+	test = str(f.read())
+	d=[]
+	test=str(test)
+	tmp = ''
+	tmpl=[]
+	for i in range(0,len(test)):
+		if test[i]=='\n' and tmp !='':
+			d.append(tmpl)
+			tmpl = []
+			tmp=''
+		if test[i]!='\n':
+			tmpl.append(test[i])
+			tmp+=test[i]
+	if tmp!='':
+		d.append(tmpl)
+	return d
+
+def write_tofile(output,filename):
+	f = open(filename, 'w')
+	f.seek(0)
+	for ele in output:
+		f.write(str(ele))
+		f.write('\n')
+	f.close();
 	
-#	print(down)
-#	if down < (len(maze)-1):
-#		print('w')
-#		print(maze[down][sx])
-		
-
-#		if maze[down][sx]=='0':
-#			maze[sy][sx]='4'
-			#path path +'d'
-#			downdist= 1 + distance(maze,down,sy,fx,fy,path)
-			#path= path[:-1]
-			#maze[sy][down]='0'
-		#else:
-			#downdist=999999
-#left 
-#	if left>-1:
-#		if maze[left][sx]=='0':
-#			maze[left][sx]='4'
-#			path= path +'l'
-#			leftdist= 1+distance(maze,sx,left,fx,fy,path)
-#			path= path[:-1]
-#			maze[left][sx]='0'
+def write_string(output):
+	f = open('output', 'w')
+	f.seek(0)
+	f.write(output)
+	f.close();
 	
-#right
-#	if right<(len(maze[0])-1):
-#		if maze[sx][right]=='0':
-#			maze[sx][right]='4'
-#			path=path+'r'
-#			rightdist= 1+distance(maze,sx,right,fx,fy,path)
-#			path=path[:-1]
-#			maze[right][sx]='0'
-	#print(str(sx)+','+str(sy))	
-
-#	return min(updist,downdist,rightdist,leftdist)
-#	sum2= min(rightdist,leftdist)
-#	return min(sum2,sum1)
-
-maze_vision()
+def compromise(maze):
+	#print('\n')
+	for ele in maze:
+		ns=''
+		for i in range(0,len(ele)):
+			if ele[i]=='EE':
+				ns+='E'
+			if ele[i]==' 1':
+				ns+='1'
+			if ele[i]==' 0':
+				ns+='0'
+			if ele[i]==' 2':
+				ns+='2'
+			if ele[i]==' 3':
+				ns+='3'
+		#print(ns)
