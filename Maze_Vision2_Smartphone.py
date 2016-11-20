@@ -25,13 +25,15 @@ def maze_vision():
 
     
    # os.system('python img_translator.py')
-    os.system('python Amazeing.py > path.txt')
-
+    os.system('python Amazeing.py')
+    
     
 #    os.system('cd Florence')
 #    os.system('python Solve_Path.py')
 #    os.system('cd ..')
-
+    #os.system('ssh pi@192.168.1.17')
+    #os.system('cd maze-vision-driving_dev/Florence')
+    #os.system('python Solve_Path '+str(q))
 
 
 

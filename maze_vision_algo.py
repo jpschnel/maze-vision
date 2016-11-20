@@ -45,10 +45,10 @@ def mvsp(die):
 	path = retrace(sx,sy,sp,ng)
 	#printee(edge_maze)
 	compromise(edge_maze)
-	print("sx="+str(sx))
-	print("sy="+str(sy))
-	print("fx="+str(fx))
-	print("fy="+str(fy))
+	#print("sx="+str(sx))
+#	print("sy="+str(sy))
+#	print("fx="+str(fx))
+#	print("fy="+str(fy))
 	#ans= distance(maze,sx,sy,fx,fy)
 	#print ("the shortest path is "+ans+ " spaces")
 	#et=strftime("%S", gmtime())
@@ -77,9 +77,9 @@ def restring(path,die):
 		if path[i]!=lastc:
 			div = 0
 			if lastc=='r' or lastc=='l':
-				amt=amt/(die[0]/2)
+				amt=amt/(die[0]/3)
 			if lastc=='u' or lastc=='d':
-				amt=amt/(die[0]/2)
+				amt=amt/(die[0]/3)
 			for j in range(amt):
 				np+=lastc
 			#redo.append("("+lastc+","+str(amt)+")")
@@ -483,7 +483,7 @@ def write_string(output):
 	f.close();
 	
 def compromise(maze):
-	print('\n')
+	#print('\n')
 	for ele in maze:
 		ns=''
 		for i in range(0,len(ele)):
