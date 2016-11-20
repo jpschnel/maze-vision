@@ -62,29 +62,33 @@ def mvsp(die):
 	#print("Completed in "+str(float(et)/1000000-float(st)/1000000)+" seconds.")
 	path = restring(path,die)
 	print(path)
-	write_tofile(path,'output')
+	write_string(path)
 	return path
 
 def restring(path,die):
 	lastc=path[0]
-	amt=0.0
+	amt=0
 	redo=[]
 	path+=path[len(path)-1]
 	path+='0'
+	np = ''
 	for i in range(len(path)):
 		#print(path[i])
 		if path[i]!=lastc:
 			div = 0
 			if lastc=='r' or lastc=='l':
-				amt=amt/die[1]
+				amt=amt/(die[0]/2)
 			if lastc=='u' or lastc=='d':
-				amt=amt/die[0]
-			redo.append("("+lastc+","+str(amt)+")")
+				amt=amt/(die[0]/2)
+			for j in range(amt):
+				np+=lastc
+			#redo.append("("+lastc+","+str(amt)+")")
+			
 			lastc=path[i]
-			amt=0.0
+			amt=0
 		else:
-			amt+=1.0
-	return redo
+			amt+=1
+	return np
 
 def renode(sp,ng):
 	final = []
