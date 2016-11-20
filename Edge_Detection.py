@@ -55,5 +55,5 @@ def main(input_pic):
     
 
 
-main('Picture.jpg')
+main('mazeinput.jpg')
 

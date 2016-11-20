@@ -12,7 +12,7 @@ def trans_main():
 	img= imread('extracted.jpg')
 	jake = len(img)
 	marley = len(img[0])
-	print(jake,marley)
+	#print(jake,marley)
 	img_resized=imresize(img,(jake,marley))
 	arr=numpy.asarray(img_resized,dtype="int32")
 
@@ -106,16 +106,16 @@ def trans_main():
 	#print(abs(max(pt3[0])-min(pt2[0])))
 	#print(abs(max(pt3[1])-min(pt2[1])))
 	die = (pt3[len(pt3)-1][0]-pt3[0][0],pt3[len(pt3)-1][1]-pt3[0][1])
-	print(pt3[0],pt3[len(pt3)-1])
-	print(radis)
-	print(radis1)
-	print("The size of each pixel is "+str(pixel_value))
-	print("The Car's Center is: ("+str(av3[1])+","+str(av3[0])+") or at ("+str(car_val[1])+'",'+str(car_val[0])+'").')
-	print("The Car is:" +str(dim))
-	print("The Car is:" +str(die))
+	#print(pt3[0],pt3[len(pt3)-1])
+#	print(radis)
+#	print(radis1)
+#	print("The size of each pixel is "+str(pixel_value))
+#	print("The Car's Center is: ("+str(av3[1])+","+str(av3[0])+") or at ("+str(car_val[1])+'",'+str(car_val[0])+'").')
+#	print("The Car is:" +str(dim))
+#	print("The Car is:" +str(die))
 	rad=die
-	print("The Target's Center is: ("+str(av1[1])+","+str(av1[0])+") or at ("+str(target_val[1])+'",'+str(target_val[0])+'").')
-	print("The floor size is "+str(floor_dim[1])+'" by '+str(floor_dim[0])+'".')
+#	print("The Target's Center is: ("+str(av1[1])+","+str(av1[0])+") or at ("+str(target_val[1])+'",'+str(target_val[0])+'").')
+#	print("The floor size is "+str(floor_dim[1])+'" by '+str(floor_dim[0])+'".')
 	f = open('maze.txt', 'w')
 	f.seek(0)
 	#f.write(str(die))
@@ -127,7 +127,7 @@ def trans_main():
 		f.write(str(tmp))
 		f.write('\n')
 	f.close();
-	print(len(no),len(no[i]))
+#	print(len(no),len(no[i]))
 	#x is going from left to right, and y is up and down
 	#imsave('img_new.jpg',img)
 	return die

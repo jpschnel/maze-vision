@@ -44,7 +44,7 @@ def applyFilter(dimensions,filter_string, img_array,coeff):
 
 def main():
 
-    img=imread('picture.jpg')
+    img=imread('Picture.jpg')
     difference=.25
     img_median= np.median(img)
     min_level=max(0,(1-difference)*img_median)
@@ -60,7 +60,7 @@ def main():
         for j in range(0,len(img_arr[0])):
             if img_arr[i][j]==255:
                 img_arr[i][j]=1
-    print(img_arr)
+  #  print(img_arr)
     coeff=1
     #val = applyFilter([x,y],filter_string, img_arr,coeff)
     #if type(val)==str:

@@ -39,8 +39,8 @@ def maze_vision():
 ###################################################
 
     
-    os.system('python img_translator.py')
-
+   # os.system('python img_translator.py')
+    os.system('python Amazeing.py > path.txt')
 
     
     os.system('cd Florence')

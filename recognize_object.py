@@ -6,10 +6,10 @@ import copy
 def resize(img):
     return imresize(img,((len(img)/10),(len(img[0])/10)))
 def main():
-    Source_img= resize(imread('Picture.jpg'))
+    Source_img= resize(imread('mazeinput.jpg'))
     new_img=copy.deepcopy(Source_img)
-    Robot_img=resize(imread('robot_template.jpg'))
-    End_img=resize(imread('end_template.jpg'))
+    Robot_img=resize(imread('robot_template_1.jpg'))
+    End_img=resize(imread('end_template_1.jpg'))
 
     new_img_arr=np.asarray(new_img,dtype="int32")
     for i in range(0,len(new_img_arr)):
