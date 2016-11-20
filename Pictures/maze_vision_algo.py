@@ -2,11 +2,11 @@
 #import time
 #from datetime import datetime
 
-def mvsp(die):
+def mvsp():
 	path= ''
 	maze=[]
 	maze = get_maze()
-	#printee(maze)
+	printee(maze)
 	fx=0
 	fy=0
 	sx=0
@@ -45,10 +45,10 @@ def mvsp(die):
 	path = retrace(sx,sy,sp,ng)
 	#printee(edge_maze)
 	compromise(edge_maze)
-	#print("sx="+str(sx))
-#	print("sy="+str(sy))
-#	print("fx="+str(fx))
-#	print("fy="+str(fy))
+	print("sx="+str(sx))
+	print("sy="+str(sy))
+	print("fx="+str(fx))
+	print("fy="+str(fy))
 	#ans= distance(maze,sx,sy,fx,fy)
 	#print ("the shortest path is "+ans+ " spaces")
 	#et=strftime("%S", gmtime())
@@ -60,35 +60,8 @@ def mvsp(die):
 	write_tofile(edge_maze,"ZEdge_maze.txt")
 	write_tofile(graph,"ZGraph.txt")
 	#print("Completed in "+str(float(et)/1000000-float(st)/1000000)+" seconds.")
-	path = restring(path,die)
 	print(path)
 	write_string(path)
-	return path
-
-def restring(path,die):
-	lastc=path[0]
-	amt=0
-	redo=[]
-	path+=path[len(path)-1]
-	path+='0'
-	np = ''
-	for i in range(len(path)):
-		#print(path[i])
-		if path[i]!=lastc:
-			div = 0
-			if lastc=='r' or lastc=='l':
-				amt=amt/(die[0]/3)
-			if lastc=='u' or lastc=='d':
-				amt=amt/(die[0]/3)
-			for j in range(amt):
-				np+=lastc
-			#redo.append("("+lastc+","+str(amt)+")")
-			
-			lastc=path[i]
-			amt=0
-		else:
-			amt+=1
-	return np
 
 def renode(sp,ng):
 	final = []
@@ -483,7 +456,7 @@ def write_string(output):
 	f.close();
 	
 def compromise(maze):
-	#print('\n')
+	print('\n')
 	for ele in maze:
 		ns=''
 		for i in range(0,len(ele)):

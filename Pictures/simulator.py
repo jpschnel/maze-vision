@@ -32,9 +32,10 @@ def main():
 			sx+=1
 		maze[sx][sy]='X'
 		sys.stderr.write("\x1b[2J\x1b[H")
-		printeint(maze)
+		
 		print(i,string[i])
 		#time.sleep(.05)
+	printeint(maze)
 	
 def normal(string):
 	i=0

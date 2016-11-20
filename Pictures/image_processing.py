@@ -60,7 +60,7 @@ def main():
         for j in range(0,len(img_arr[0])):
             if img_arr[i][j]==255:
                 img_arr[i][j]=1
-  #  print(img_arr)
+    print(img_arr)
     coeff=1
     #val = applyFilter([x,y],filter_string, img_arr,coeff)
     #if type(val)==str:
