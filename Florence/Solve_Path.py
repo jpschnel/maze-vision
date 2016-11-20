@@ -75,12 +75,12 @@ Florence = Robot.Robot(left_trim=LEFT_TRIM, right_trim=RIGHT_TRIM)
 path = str(sys.argv[1])
 di = 2		#direction: 0 = up, 1 = right, 2 = down, 3 = left; direction is always initially set to down
 #straight line variables (t,s)
-t = 0.63	#time: seconds that the motors are running
+t = 0.33	#time: seconds that the motors are running
 s = 50		#speed: controls speed (going straight), can be value 0-255
 #90 degree turn variables (t90,s90)
-t90 = 0.46
+t90 = 0.5
 s90 = 50
 #180 degree turn variables (t180,s180)
-t180 = 0.95
+t180 = 1.0
 s180 = 50
 SolvePath(path, di)
