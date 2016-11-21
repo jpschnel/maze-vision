@@ -1,0 +1,13 @@
+date: November 2, 2016
+meeting_type: TA
+attendance: [nwhahn,jpschnel, jrcharlo, murphy53]
+absent: []
+excused_absences: []
+task_progress: [ 
+  {ubit: jrcharlo, progress: reported on florence funtionality}
+  {ubit: nwhahn, progress: discussed image processing quirks}
+  {ubit: jpschnel, progress: took note of next step in project}
+  {ubit: murphy53, progress: demonstrated newly optimized maze solving algorithm}
+  ]
+issues: []
+Notes:  |

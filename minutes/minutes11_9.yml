@@ -1,0 +1,13 @@
+date: November 9, 2016
+meeting_type: TA
+attendance: [jpschnel, jrcharlo, murphy53]
+absent: [nwhahn]
+excused_absences: [nwhahn: car trouble]
+task_progress: [ 
+  {ubit: jrcharlo, progress: talked about overall project progression}
+  {ubit: nwhahn, progress: absent}
+  {ubit: jpschnel, progress: considered test cases}
+  {ubit: murphy53, progress: discussed algorithm optimization}
+  ]
+issues: []
+Notes:  |
