@@ -1,0 +1,13 @@
+date: November 16, 2016
+meeting_type: TA
+attendance: [nwhahn, jrcharlo, murphy53]
+absent: [jpschnel]
+excused_absences: [jpschnel: sent text saying he was running late]
+task_progress: [ 
+  {ubit: jrcharlo, progress: discussed bug fixes}
+  {ubit: nwhahn, progress: discussed bug fixes}
+  {ubit: jpschnel, progress: absent}
+  {ubit: murphy53, progress: discussed bug fixes}
+  ]
+issues: []
+Notes:  |

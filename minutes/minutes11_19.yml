@@ -1,0 +1,14 @@
+date: November 19, 2016
+meeting_type: group
+attendance: [nwhahn, jpschnel, jrcharlo]
+absent: [murphy53]
+excused_absences: [{ubit: murphy53: reason: late meeting, couldn't get transportation}]
+task_progress: [ 
+  {ubit: jrcharlo, progress: verified florence's motor calibration}
+  {ubit: nwhahn, progress: bug fixes to recognize object}
+  {ubit: jpschnel, progress: testing on maze images and outputs}
+  {ubit: murphy53, progress: absent}
+  ]
+issues: []
+Notes:  | 
+  Nearly there, found a bug in maze representation but it should be easily resolvable
