@@ -2,6 +2,7 @@ import numpy as np
 import cv2 as cv
 import copy
 from scipy.misc import imread,imsave,imresize
+import scipy.ndimage as sp
 
 def genHistogram(img_arr):
     Hist=[]
@@ -36,6 +37,7 @@ def LoG_Filter(img_arr):
     return new_img_arr
 def main(input_pic):
     img = cv.imread(input_pic,cv.CV_LOAD_IMAGE_GRAYSCALE)
+    img=sp.gaussian_filter(img,sigma=3)
     img= imresize(img,((len(img)/10),(len(img[0])/10)))
     img_arr=np.asarray(img,dtype="int32")
 
@@ -52,8 +54,10 @@ def main(input_pic):
                  LoG_arr[i][j]=255
      
     cv.imwrite('LoG_image.jpg',LoG_arr)    
+    #img_new=cv.imread('LoG_image.jpg',cv.CV_LOAD_IMAGE_GRAYSCALE)
     
 
+    
 
 main('mazeinput.jpg')
 
