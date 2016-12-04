@@ -59,7 +59,10 @@ def trans_main():
 	pixel_value = floor_dim[0]/marley,floor_dim[1]/jake
 	car_val = av3[0]*pixel_value[0],av3[1]*pixel_value[1]
 	target_val = av1[0]*pixel_value[0],av1[1]*pixel_value[1]
-	radis = (max(abs(pt3[len(pt3)-1][0]-pt3[0][0]),abs(pt3[len(pt3)-1][1]-pt3[0][1]))+1)/2
+	radis = float(max(abs(pt3[len(pt3)-1][0]-pt3[0][0]),abs(pt3[len(pt3)-1][1]-pt3[0][1]))+1)/(1.3)
+	print(radis)
+	radis = int(radis)
+	print(radis)
 	radis1 = max(abs(pt2[len(pt2)-1][0]-pt2[0][0]),abs(pt2[len(pt2)-1][1]-pt2[0][1]))+1
 	#justins code starts here
 	#gaaaaaaaaah
