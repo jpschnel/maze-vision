@@ -23,8 +23,9 @@ Inside the config file write the number the pi returned. it should look somewhat
 In the maze vision folder enter the command:
 
        install
+       
 **Setting up the Maze**
-Place the Robot on the surface and pick a random object to represent the end goal-something with many varying colors and easily discernible usually works best
+Place the Robot on the surface and pick a random object to represent the end goal-something with many varying colors and easily discernible usually works best. You can look at the files in the folder named Samples to get an idea. 
 
 Place these in the maze
 
