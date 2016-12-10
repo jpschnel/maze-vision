@@ -22,7 +22,7 @@ Inside the config file write the number the pi returned. it should look somewhat
          
 In the maze vision folder enter the command:
 
-       install
+         ./install
        
 **Setting up the Maze**
 Place the Robot on the surface and pick a random object to represent the end goal-something with many varying colors and easily discernible usually works best. You can look at the files in the folder named Samples to get an idea. 
@@ -50,7 +50,7 @@ Repeat this process for the end goal. name it **end_template.jpg**.
 
 Enter the following command in the maze vision folder:
         
-        run
+        ./run
 
 Now until you switch locations(at which point templates may need to be redefined) you can just take a picture and place it in the folder the same way as before and then use the same *run* command
         
