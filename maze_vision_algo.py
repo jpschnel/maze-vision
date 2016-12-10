@@ -76,17 +76,18 @@ def restring(path,die):
 	path+=path[len(path)-1]
 	path+='0'
 	np = ''
-	print((die[0]/3))
-	print((die[1]/3))
+	print((die[0]/3.0))
+	#print((die[0]/1.5))
 	for i in range(len(path)):
 		#print(path[i])
 		if path[i]!=lastc:
 			div = 0.0
 			if lastc=='r' or lastc=='l':
-				amt=amt/(die[0]/3)
+				amt=amt/(die[0]/(3.0))#Increase the constant for more l&R
 			if lastc=='u' or lastc=='d':
-				amt=amt/(die[0]/3)
+				amt=amt/(die[0]/(3.0))
 			for j in range(int(round(amt))):
+				print(lastc+str(round(amt)))
 				np+=lastc
 			#redo.append("("+lastc+","+str(amt)+")")
 			print(amt)
@@ -504,3 +505,13 @@ def compromise(maze):
 			if ele[i]==' 3':
 				ns+='3'
 		#print(ns)
+
+
+
+
+
+
+
+#rrrrruuuurrrrrrdddddrrrrrrrrruuuuuuuu
+#rrrrrruuuurrrrrdddddrrrrrrrrruuuuuuuuu
+
