@@ -1,15 +1,14 @@
 import img_translator as it
 import maze_vision_algo as mvsp
 import os
-import time
-import spur
 import string
 
 def main():
    f=open('config.txt','r')
-   for line in f.readlines:
-       strpi=line
-       strpi.replace('\n','')
+   line = f.next()
+   strpi=line
+   strpi.replace('\n','')
+   print(strpi)
    rad = it.trans_main()
 	#print(rad)
    p = mvsp.mvsp(rad)
