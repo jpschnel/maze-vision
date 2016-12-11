@@ -1,1 +1,0 @@
-some solvable mazes for testing purposes

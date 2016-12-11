@@ -1,0 +1,8 @@
+#!/bin/sh
+
+sudo apt install python
+sudo apt install python-numpy
+sudo apt install python-opencv
+sudo apt install python-scipy
+
+sudo chmod +x run

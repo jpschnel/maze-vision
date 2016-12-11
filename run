@@ -1,0 +1,3 @@
+#!/bin/sh
+
+python Maze_Vision2_Smartphone.py

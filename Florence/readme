@@ -1,6 +1,3 @@
-LeftTurn.py, Path.py, RightTurn.py, StraightLine.py, and TurnAround.py are all template files that
-have been edited to implement certain movements.
+Solve_Path.py accepts a string composed of 'u', 'r', 'd', 'l' and will move Florence (the robot) along the path.
 
-Robot.py and Robot.pyc have not been edited at all.
-
-Straight Line Distance Trials is a log of experimental data.
+Robot.py and Robot.pyc have not been edited at all (code created by Adafruit).

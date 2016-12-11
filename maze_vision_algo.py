@@ -1,19 +1,11 @@
-
-#import time
-#from datetime import datetime
-
 def mvsp(die):
 	path= ''
 	maze=[]
 	maze = get_maze()
-	#printee(maze)
 	fx=0
 	fy=0
 	sx=0
 	sy=0
-	#st=strftime("%S", gmtime())
-	#st = datetime.now()
-	#st = st.microsecond
 	for x in range(0,len(maze[0])):
 		for y in range(0,len(maze)):
 			if maze[y][x]=='2':
@@ -30,39 +22,17 @@ def mvsp(die):
 	ng.insert(0,(sy,sx))
 	ng.append((fy,fx))
 	edge_maze=merge_em(maze,edges)
-	#printee(maze)
 	wata = False
 	graph = get_nodes(ng,edge_maze,[])
-	#printee(graph)
 	compressed = compress(graph,ng)
-	#printee(compressed)
-	#print('\n')
-	#printee(compressed)
 	sp = shortest_path(compressed)
-	#print(sp)
-	#print(ng)
-	#print(renode(sp,ng))
 	path = retrace(sx,sy,sp,ng)
-	#printee(edge_maze)
 	compromise(edge_maze)
-	#print("sx="+str(sx))
-#	print("sy="+str(sy))
-#	print("fx="+str(fx))
-#	print("fy="+str(fy))
-	#ans= distance(maze,sx,sy,fx,fy)
-	#print ("the shortest path is "+ans+ " spaces")
-	#et=strftime("%S", gmtime())
-	#et = datetime.now()
-	#et = et.microsecond
-	#path = normal(path)
 	write_tofile(sp,"ZShortest_Path.txt")
 	write_tofile(ng,"ZNode_Graph.txt")
 	write_tofile(edge_maze,"ZEdge_maze.txt")
 	write_tofile(graph,"ZGraph.txt")
-	#print("Completed in "+str(float(et)/1000000-float(st)/1000000)+" seconds.")
 	path = restring(path,die)
-	print(path)
-	print(die)
 	write_string(path)
 	return path
 
@@ -76,20 +46,16 @@ def restring(path,die):
 	path+=path[len(path)-1]
 	path+='0'
 	np = ''
-	print((die[0]/3))
-	print((die[1]/3))
+	print((die[0]/3.0))
 	for i in range(len(path)):
-		#print(path[i])
 		if path[i]!=lastc:
 			div = 0.0
 			if lastc=='r' or lastc=='l':
-				amt=amt/(die[0]/3)
+				amt=amt/(die[0]/(3.0))
 			if lastc=='u' or lastc=='d':
-				amt=amt/(die[0]/3)
+				amt=amt/(die[0]/(3.0))
 			for j in range(int(round(amt))):
 				np+=lastc
-			#redo.append("("+lastc+","+str(amt)+")")
-			print(amt)
 			lastc=path[i]
 			amt=0.0
 		else:
@@ -103,21 +69,16 @@ def renode(sp,ng):
 	return final
 
 def retrace(sx,sy,sp,ng):
-	#print(sy,sx)
 	fullstring=''
 	for ele in sp:
 		weep=''
-		#print(ele)
 		if ele[2]=='v':
-			#print(ng[ele[0]])
 			tmp = sy-ng[ele[0]][0]
-			#print(tmp)
 			if tmp<0:
 				weep=weep+'d'*abs(tmp)
 			if tmp>0:
 				weep=weep+'u'*abs(tmp)
 			tmp = sx-ng[ele[0]][1]
-			#print(tmp)
 			if tmp<0:
 				weep=weep+'r'*abs(tmp)
 			if tmp>0:
@@ -125,16 +86,12 @@ def retrace(sx,sy,sp,ng):
 			sy=ng[ele[0]][0]
 			sx=ng[ele[0]][1]
 		if ele[2]=='h':
-			#print(ng[ele[0]])
-			#print(ng[ele[0]])
 			tmp = sx-ng[ele[0]][1]
-			#print(tmp)
 			if tmp<0:
 				weep=weep+'r'*abs(tmp)
 			if tmp>0:
 				weep=weep+'l'*abs(tmp)
 			tmp = sy-ng[ele[0]][0]
-			#print(tmp)
 			if tmp<0:
 				weep=weep+'d'*abs(tmp)
 			if tmp>0:
@@ -142,9 +99,6 @@ def retrace(sx,sy,sp,ng):
 			sy=ng[ele[0]][0]
 			sx=ng[ele[0]][1]
 		fullstring+=weep
-		#print(weep)
-	#print(fullstring)
-	#print("UD")
 	return fullstring
 
 
@@ -198,8 +152,6 @@ def shortest_path(graph):
 				dist[graph[current][i][0]]=alt
 				previous[graph[current][i][0]]=previous[current][:]
 				previous[graph[current][i][0]].append(graph[current][i])
-				#print(previous[current],alt)
-				#time.sleep(.15)
 	return previous[len(previous)-1]
 	
 def find_smallest(dist,remaining):
@@ -489,7 +441,6 @@ def write_string(output):
 	f.close();
 	
 def compromise(maze):
-	#print('\n')
 	for ele in maze:
 		ns=''
 		for i in range(0,len(ele)):
@@ -503,4 +454,3 @@ def compromise(maze):
 				ns+='2'
 			if ele[i]==' 3':
 				ns+='3'
-		#print(ns)
