@@ -23,7 +23,7 @@ Inside the config file write the number the pi returned. It should look somewhat
          
 In the maze vision folder enter the commands:
 
-			chmod +x install
+         chmod +x install
          ./install
        
 **Setting up the Maze**
