@@ -4,7 +4,6 @@ import sys
 def main():
 	maze = get_maze()
 	string = get_string() 
-	print(string)
 	sx=0
 	sy=0
 	dx=0
@@ -21,6 +20,7 @@ def main():
 	maze[sx][sy]='X'
 	print(string)
 	time.sleep(2)
+	string=stretch(string,18,18)
 	for i in range(0,len(string)-1):
 		if string[i]=='l':
 			sy-=1
@@ -32,9 +32,19 @@ def main():
 			sx+=1
 		maze[sx][sy]='X'
 		sys.stderr.write("\x1b[2J\x1b[H")
-		printeint(maze)
-		print(i,string[i])
-		#time.sleep(.05)
+	printeint(maze)
+        
+def stretch(s,y,x):
+	strong=''
+	for cha in s:
+		if cha=='u' or cha=='d':
+			for i in range(x):
+				strong+=cha
+		if cha=='l' or cha=='r':
+			for i in range(y):
+				strong+=cha
+		
+	return strong
 	
 def normal(string):
 	i=0
