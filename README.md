@@ -1,9 +1,9 @@
 # maze-vision
-Requirements:
-OS: Linux
 To find the fastest way around a set of obstacles by analyzing a bird's eye perspective
 
 Follow these steps for first time use and when entering a completely new environment.
+
+Make sure you are running on Linux
 
 **Setup the pi**
 
