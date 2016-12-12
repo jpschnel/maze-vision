@@ -19,11 +19,11 @@ Go to the terminal(**Ctrl-Alt-T**) and enter the following:
          
 On your computer navigate to the maze-vision folder
 
-Inside the config file write the number the pi returned. It should look somewhat like this:
+Inside the config file inside the maze-vision folder write the number the pi returned. It should look somewhat like this:
 
          192.168.43.113
          
-In the maze vision folder right click>**open Terminal Here** enter the commands:
+In the maze-vision folder right click>**open Terminal Here** enter the commands:
 
          sudo chmod +x install
          ./install
