@@ -17,7 +17,7 @@ def main():
    #os.system('ssh pi@192.168.1.17 | python maze-vision-driving_dev/Florence/Solve_Path')
    #this.run(['cd maze-vision-driving_dev/Florence'])
    #this.run(['python Solve_Path '+str(p)])
-   os.system('ssh pi@'+strpi+' python maze-vision-driving_dev/Florence/Solve_Path.py '+str(p))
+   os.system('ssh pi@'+strpi+' python Florence/Solve_Path.py '+str(p))
    print('done!')
 
 
