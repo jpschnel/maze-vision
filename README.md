@@ -3,17 +3,31 @@ To find the fastest way around a set of obstacles by analyzing a bird's eye pers
 
 Follow these steps for first time use and when entering a completely new environment.
 
-Make sure you are running on Linux
+**Getting Started**
+
+Make sure you are running on a Linux distribution such as Ubuntu or mint
+
+A HDMI compatible monitor or television, and keyboard may be required to connect your raspberry pi to a network.
+Note: Your raspberry pi may not be wifi compatible out of the box. If you are using a pi2.0 or older, you will need a USB wifi dongle.
+
+Be sure the pi is connected to the same network as your PC, otherwise no data can be sent from your computer.
+For more information on connecting your pi to your network, look here:
+https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md
+
+Once the pi is connected, download the latest maze-vision release to your PC.
+
+Extract the downloaded file, and move the "Florence" folder to the Home directory of your raspberry pi.
 
 **Setup the pi**
-
-Download the maze vision foilder to your pi
+If you know the IP adress of your raspberry pi, you may skip this step;
 
 Connect your pi car to a monitor.
 
 Go to the terminal(**Ctrl-Alt-T**) and enter the following:
 
          hostname -I
+
+Be sure to record what shows up afterwards. 
 
 **Getting your computer ready**
          
@@ -36,15 +50,17 @@ Place these in the maze
 
 Take a picture from overhead
 
-Upload the picture file inside the maze-vision directory as mazeinput.jpg
+Upload the picture file inside the maze-vision directory as **mazeinput.jpg**
 
 **Creating Templates**
 
-Open the file with GIMP.
+Open the file with GIMP. This can be done by right-clicking **mazeinput.jpg** and selecting "Open with.../GIMP"
+   If GIMP has not been installed on your computer, it can be installed by:
+         sudo apt-get install gimp
 
 Use the rectangle tool (the box in the toolbar) and drag over the entirety of the robot(including any wires)
 
-right-click and select **Edit>Copy** and then **Edit>Paste as>New Image**
+right-click and select **Edit>Copy**, right-click again and then **Edit>Paste as>New Image**
 
 Go to **File>Export as** and save the file in the maze-vision folder as **robot_template.jpg**.
 
