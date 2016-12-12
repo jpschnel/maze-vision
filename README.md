@@ -3,13 +3,15 @@ To find the fastest way around a set of obstacles by analyzing a bird's eye pers
 
 Follow these steps for first time use and when entering a completely new environment.
 
+Make sure you are running on Linux
+
 **Setup the pi**
 
 Download the maze vision foilder to your pi
 
 Connect your pi car to a monitor.
 
-Go to the terminal and enter the following:
+Go to the terminal(**Ctrl-Alt-T**) and enter the following:
 
          hostname -I
 
@@ -21,9 +23,9 @@ Inside the config file write the number the pi returned. It should look somewhat
 
          192.168.43.113
          
-In the maze vision folder enter the commands:
+In the maze vision folder right click>**open Terminal Here** enter the commands:
 
-         chmod +x install
+         sudo chmod +x install
          ./install
        
 **Setting up the Maze**
@@ -51,7 +53,7 @@ Repeat this process for the end goal and name it **end_template.jpg**.
 
 **Running the program**
 
-Enter the following command in the maze vision folder:
+**Right click>Open Terminal Here** and Enter the following command in the maze vision folder:
         
         ./run
 
